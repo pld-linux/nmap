@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_X	- don't build gtk-based nmap-X11
+# _without_x	- don't build gtk-based nmap-X11
 #
 Summary:	Network exploration tool and security scanner
 Summary(es):	Herramienta de exploración de la rede y seguridad
@@ -11,12 +11,12 @@ Summary(uk):	õÔÉÌ¦ÔÁ ÓËÁÎÕ×ÁÎÎÑ ÍÅÒÅÖ¦ ÔÁ ÁÕÄÉÔÕ ÂÅÚÐÅËÉ
 Summary(zh_CN):	[ÏµÍ³]Ç¿Á¦¶Ë¿ÚÉ¨ÃèÆ÷
 Summary(zh_TW):	[.)B¨t.$)B²Î].)B±j¤O.$)BºÝ.)B¤f.$)B±½.)B´y.$)B¾¹
 Name:		nmap
-Version:	3.45
+Version:	3.48
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	9219fe0907a83bddbfd1b99a21ba35ac
+# Source0-md5:	8c38559a863efd476c5b042123f1ee3a
 Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
@@ -24,7 +24,7 @@ Patch2:		%{name}-statistics.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{!?_without_X:BuildRequires:	gtk+-devel >= 1.0}
+%{!?_without_x:BuildRequires:	gtk+-devel >= 1.0}
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -126,11 +126,13 @@ cd ../libpcap-possiblymodified
 %{__aclocal}
 %{__autoconf}
 cd ../nmapfe
-%{?_without_X:echo 'AC_DEFUN([AM_PATH_GTK],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
+%{?_without_x:echo 'AC_DEFUN([AM_PATH_GTK],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
 %{__aclocal}
 %{__autoconf}
 cd ..
-%configure %{?_without_X:--without-nmapfe}
+CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+%configure \
+	%{?_without_X:--without-nmapfe}
 
 %{__make}
 
@@ -142,7 +144,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 	DESTDIR=$RPM_BUILD_ROOT \
 	deskdir=%{_applnkdir}/Network
 
-%if %{!?_without_X:1}0
+%if %{!?_without_x:1}0
 cd $RPM_BUILD_ROOT%{_bindir}
 rm -f xnmap
 ln -s nmapfe xnmap
