@@ -1,7 +1,7 @@
 Summary:	Port scanner
 Summary(pl):	Skaner portów
 Name:		nmap
-Version:	2.54BETA2
+Version:	2.54BETA5
 Release:	1
 License:	GPL
 Group:		Networking
