@@ -15,6 +15,7 @@ Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
+# Source0-md5: 7dd965ee17397cb80775f226b0904010
 Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
