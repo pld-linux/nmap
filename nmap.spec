@@ -5,6 +5,7 @@ Version:	2.54BETA20
 Release:	1
 License:	GPL
 Group:		Networking
+Group(de):	Netzwerkwesen
 Group(pl):	Sieciowe
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
 Patch0:		%{name}-DESTDIR.patch
@@ -36,6 +37,7 @@ sweep, and Null scan.
 Summary:	Gtk+ frontend for nmap
 Summary(pl):	Frontend Gtk+ dla nmapa
 Group:		X11/Applications/Networking
+Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
 Requires:	%{name} = %{version}
 Requires:	gtk+
