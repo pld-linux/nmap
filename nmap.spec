@@ -53,7 +53,6 @@ Gtk+.
 %patch0 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure
 cd libpcap-possiblymodified
 %configure
@@ -76,8 +75,7 @@ mv -f $RPM_BUILD_ROOT%{_mandir}/man1/{xnmap,nmapfe}.1 $RPM_BUILD_ROOT%{_prefix}/
 rm -f $RPM_BUILD_ROOT%{_bindir}/xnmap
 ln -sf %{_prefix}/X11R6/bin/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xnmap
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* docs/*.txt \
-	$RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1/*
+gzip -9nf docs/*.txt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
