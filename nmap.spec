@@ -120,7 +120,7 @@ cd ../libpcap-possiblymodified
 %{__aclocal}
 %{__autoconf}
 cd ../nmapfe
-%{?_without_X:echo 'AC_DEFUN([AM_PATH_GTK],[])' >> acinclude.m4}
+%{!?_without_X:echo 'AC_DEFUN([AM_PATH_GTK],[])' >> acinclude.m4}
 %{__aclocal}
 %{__autoconf}
 cd ..
