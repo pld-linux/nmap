@@ -1,3 +1,6 @@
+#
+# _without_X	- don't build gtk-based nmap-X11
+#
 Summary:	Network exploration tool and security scanner
 Summary(es):	Herramienta de exploración de la rede y seguridad
 Summary(pl):	Programem do badania i audytu sieci
@@ -20,7 +23,7 @@ Patch1:		%{name}-ipv6.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk+-devel >= 1.0
+%{!?_without_X:BuildRequires:	gtk+-devel >= 1.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -120,6 +123,7 @@ cd ../libpcap-possiblymodified
 %{__aclocal}
 %{__autoconf}
 cd ../nmapfe
+%{?_without_X:echo 'AC_DEFUN([AM_PATH_GTK],[])' >> acinclude.m4}
 %{__aclocal}
 %{__autoconf}
 cd ..
