@@ -3,7 +3,7 @@ Summary(es):	Herramienta de exploración de la rede y seguridad
 Summary(pl):	Skaner portów
 Summary(pt_BR):	Ferramenta de exploração da rede e segurança
 Name:		nmap
-Version:	2.54BETA30
+Version:	2.54BETA31
 Release:	1
 License:	GPL
 Group:		Networking
@@ -35,7 +35,7 @@ impresiones digitales TCP/IP.
 %description -l pl
 Nmap jest programem przeznaczonym do skanowania du¿ych sieci jak i
 pojedynczych serwerów w celu okre¶lenia które hosty w danym momencie
-pracuja, a tak¿e jakie serwisy oferuj±.
+pracuj±, a tak¿e jakie serwisy oferuj±.
 
 nmap oferuje ró¿ne techniki skanowania wykorzystuj±ce: UDP, TCP
 connect(), TCP SYN (half open), ftp proxy (bounce attack),
