@@ -1,5 +1,7 @@
 Summary:	Port scanner
+Summary(es):	Herramienta de exploración de la rede y seguridad
 Summary(pl):	Skaner portów
+Summary(pt_BR):	Ferramenta de exploração da rede e segurança
 Name:		nmap
 Version:	2.54BETA30
 Release:	1
@@ -12,6 +14,7 @@ Group(pt_BR):	Rede
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
+Patch2:		%{name}-desktop.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	gtk+-devel >= 1.0
 BuildRequires:	autoconf
@@ -28,6 +31,12 @@ connect(), TCP SYN (half open), ftp proxy (bounce attack),
 Reverse-ident, ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN
 sweep, and Null scan.
 
+%description -l es
+Nmap es un utilitario para la exploración y auditoría de redes.
+Soporta "ping scanning", varias técnicas de búsqueda de puertos
+abiertos, e identificación remota de sistemas operacionales vía
+impresiones digitales TCP/IP.
+
 %description -l pl
 Nmap jest programem przeznaczonym do skanowania du¿ych sieci jak i
 pojedynczych serwerów w celu okre¶lenia które hosty w danym momencie
@@ -38,9 +47,16 @@ connect(), TCP SYN (half open), ftp proxy (bounce attack),
 Reverse-ident, ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN
 sweep, and Null scan.
 
+%description -l pt_BR
+Nmap é um utilitário para a exploração e auditoria de redes. Ele
+suporta "ping scanning", várias técnicas de procura por portas
+abertas, e identificação remota de sistemas operacionais via
+impressões digitais TCP/IP.
+
 %package X11
 Summary:	Gtk+ frontend for nmap
 Summary(pl):	Frontend Gtk+ dla nmapa
+Summary(pt_BR):	Frontend gtk+ para o nmap
 Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
@@ -55,10 +71,15 @@ This package includes nmapfe, a Gtk+ frontend for nmap.
 Ten pakiet zawiera nmapfe, czyli frontend dla nmapa pisany z u¿yciem
 Gtk+.
 
+%description X11 -l pt_BR
+Frontend gráfico para o nmap (nmapfe) escrito em gtk+. Não contém toda
+a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
+
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 aclocal
