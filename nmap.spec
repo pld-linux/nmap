@@ -53,25 +53,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/nmap/*
 
 %{_mandir}/man1/*
-
-%changelog
-* Thu Feb 18 1999 Wojtek 쫖usarczyk <wojtek@shadow.eu.org>
-  [2.07-2d]
-- fixed Group,
-- removed gzipping html docs.
-
-* Sat Feb 13 1999 Arkadiusz Mi턪iewicz <misiek@misiek.eu.org>
-- new upstream release
-- few small changes
-
-* Wed Dec 30 1998 Arkadiusz Mi턪iewicz <misiek@misiek.eu.org>
-- new upstream release
-
-* Wed Dec 16 1998 Arkadiusz Mi턪iewicz <misiek@misiek.eu.org>
-- new upstream release
-
-* Thu Nov 03 1998 Arkadiusz Mi턪iewicz <misiek@misiek.eu.org>
-- corrected spec file for Polish Linux Distribution
-
-* Sat Oct 3 1998  Ian Macdonald <ianmacd@xs4all.nl>
-- first RPM release
