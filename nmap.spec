@@ -90,7 +90,7 @@ Summary(pt_BR):	Frontend GTK+ para o nmap
 Summary(ru):	GTK+ интерфейс для nmap
 Summary(uk):	GTK+ ╕нтерфейс для nmap
 Group:		X11/Applications/Networking
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Obsoletes:	nmap-frontend
 
 %description X11
@@ -162,6 +162,14 @@ cd -
 install %{SOURCE1} $RPM_BUILD_ROOT%{_pixmapsdir}
 %endif
 
+install -D docs/nmap_french.1 $RPM_BUILD_ROOT%{_mandir}/fr/man1/nmap.1
+install -D docs/nmap_german.1 $RPM_BUILD_ROOT%{_mandir}/de/man1/nmap.1
+install -D docs/nmap_italian.1 $RPM_BUILD_ROOT%{_mandir}/it/man1/nmap.1
+install -D docs/nmap_lithuanian.1 $RPM_BUILD_ROOT%{_mandir}/lt/man1/nmap.1
+install -D docs/nmap_portuguese.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1/nmap.1
+install -D docs/nmap_russian.1 $RPM_BUILD_ROOT%{_mandir}/ru/man1/nmap.1
+install -D docs/nmap_spanish.1 $RPM_BUILD_ROOT%{_mandir}/es/man1/nmap.1
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -170,15 +178,22 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*.txt CHANGELOG
 %attr(755,root,root) %{_bindir}/nmap
 %{_datadir}/nmap
-%{_mandir}/man1/nmap.*
+%{_mandir}/man1/nmap.1*
+%lang(de) %{_mandir}/de/man1/nmap.1*
+%lang(es) %{_mandir}/es/man1/nmap.1*
+%lang(fr) %{_mandir}/fr/man1/nmap.1*
+%lang(it) %{_mandir}/it/man1/nmap.1*
+%lang(lt) %{_mandir}/lt/man1/nmap.1*
+%lang(pt) %{_mandir}/pt/man1/nmap.1*
+%lang(ru) %{_mandir}/ru/man1/nmap.1*
 
 %if %{with x}
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
-%{_mandir}/man1/nmapfe.*
-%{_mandir}/man1/xnmap.*
+%{_mandir}/man1/nmapfe.1*
+%{_mandir}/man1/xnmap.1*
 %{_desktopdir}/nmapfe.desktop
 %{_pixmapsdir}/nmap.png
 %endif
