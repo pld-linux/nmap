@@ -56,7 +56,7 @@ danym ho¶cie), a tak¿e TCP/IP fingerprinting (zdalne rozpoznawanie
 typu systemu operacyjnego). Nmap oferuje ró¿ne techniki skanowania
 wykorzystuj±ce: UDP, TCP connect(), TCP SYN (half open), ftp proxy
 (bounce attack), Reverse-ident, ICMP (ping sweep), FIN, ACK sweep,
-Xmas Tree, SYN sweep, and Null scan.
+Xmas Tree, SYN sweep i Null scan.
 
 %description -l pt_BR
 Nmap é um utilitário para a exploração e auditoria de redes. Ele
