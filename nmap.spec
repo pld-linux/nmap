@@ -38,6 +38,9 @@ ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN sweep, and Null scan.
 %build
 LDFLAGS="-s"; export LDFLAGS
 %configure
+cd libpcap-possiblymodified
+%configure
+cd ..
 
 make CCOPT="$RPM_OPT_FLAGS"
 
