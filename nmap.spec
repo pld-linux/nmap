@@ -49,8 +49,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /usr/bin/*
 
-%dir /usr/lib/nmap
-%attr(755,root,root) /usr/lib/nmap/*
+%dir %{_libdir}/nmap
+%attr(755,root,root) %{_libdir}/nmap/*
 
 %{_mandir}/man1/*
 
