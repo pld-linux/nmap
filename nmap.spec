@@ -111,7 +111,7 @@ gzip -9nf docs/*.txt CHANGELOG
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files 
+%files
 %defattr(644,root,root,755)
 %doc docs/*.gz *.gz
 %attr(755,root,root) %{_bindir}/*
