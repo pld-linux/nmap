@@ -1,11 +1,12 @@
---- nmap-3.20/nmapfe.desktop~	Thu Nov 14 11:37:13 2002
-+++ nmap-3.20/nmapfe.desktop	Fri Mar 28 18:09:13 2003
+--- nmap-3.25/nmapfe.desktop~	Sun Mar 30 12:51:07 2003
++++ nmap-3.25/nmapfe.desktop	Sun Apr 20 11:18:29 2003
 @@ -1,6 +1,14 @@
  [Desktop Entry]
--Name=Nmapfe
+-Name=Nmap Security Scanner GUI
+-Comment=Execute Nmap security/port scans
 +Encoding=UTF-8
 +Name=Nmap
- Comment=Gtk+ frontend to nmap
++Comment=Gtk+ frontend to nmap
 +Comment[es]=Herramienta de exploración de la rede y seguridad
 +Comment[pl]=Frontend gtk+ do nmap
 +Comment[pt]=Ferramenta de exploração da rede e segurança
