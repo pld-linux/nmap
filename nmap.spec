@@ -13,8 +13,7 @@ Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-time.patch
-Patch2:		%{name}-ac25x.patch
+Patch1:		%{name}-ac25x.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -107,7 +106,6 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 aclocal
@@ -152,7 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/*.txt CHANGELOG
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/*
 
