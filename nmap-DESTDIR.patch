@@ -1,0 +1,25 @@
+--- Makefile.in~	Sun Apr  4 04:31:45 1999
++++ Makefile.in	Wed Jul 21 20:01:49 1999
+@@ -107,14 +107,14 @@
+ 	$(MAKEDEPEND) $(INCLS) -s "# DO NOT DELETE" -- $(DEFS) -- $(SRCS)
+ 
+ install: all
+-	$(INSTALL) -d $(bindir) 
+-	$(INSTALL) -d $(mandir) 
+-	$(INSTALL) -d $(mandir)/man1
+-	$(INSTALL) -d $(libdir)
+-	$(INSTALL) -m 755 $(TARGET) $(bindir)/$(TARGET)
+-	$(INSTALL) -m 644 docs/$(TARGET).1 $(mandir)/man1/$(TARGET).1
+-	$(INSTALL) -m 644 nmap-os-fingerprints  $(libdir)/nmap-os-fingerprints
+-	$(INSTALL) -m 644 nmap-services  $(libdir)/nmap-services
++	$(INSTALL) -d $(DESTDIR)$(bindir) 
++	$(INSTALL) -d $(DESTDIR)$(mandir) 
++	$(INSTALL) -d $(DESTDIR)$(mandir)/man1
++	$(INSTALL) -d $(DESTDIR)$(libdir)
++	$(INSTALL) -m 755 $(TARGET) $(DESTDIR)$(bindir)/$(TARGET)
++	$(INSTALL) -m 644 docs/$(TARGET).1 $(DESTDIR)$(mandir)/man1/$(TARGET).1
++	$(INSTALL) -m 644 nmap-os-fingerprints  $(DESTDIR)$(libdir)/nmap-os-fingerprints
++	$(INSTALL) -m 644 nmap-services  $(DESTDIR)$(libdir)/nmap-services
+ 
+ uninstall:
+ 	rm -f $(bindir)/$(TARGET)
