@@ -9,6 +9,7 @@ Group(de):	Netzwerkwesen
 Group(pl):	Sieciowe
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-time.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	gtk+-devel >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,6 +54,7 @@ Gtk+.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure
