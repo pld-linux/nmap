@@ -3,7 +3,7 @@ Summary(es):	Herramienta de exploración de la rede y seguridad
 Summary(pl):	Skaner portów
 Summary(pt_BR):	Ferramenta de exploração da rede e segurança
 Name:		nmap
-Version:	2.54BETA31
+Version:	2.54BETA32
 Release:	1
 License:	GPL
 Group:		Networking
