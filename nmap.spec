@@ -111,16 +111,16 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %patch1 -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 cd nbase
-aclocal
+%{__aclocal}
 %{__autoconf}
 cd ../libpcap-possiblymodified
-aclocal
+%{__aclocal}
 %{__autoconf}
 cd ../nmapfe
-aclocal
+%{__aclocal}
 %{__autoconf}
 cd ..
 %configure
