@@ -1,13 +1,13 @@
 Summary:	Port scanner
 Summary(pl):	Skaner portów
 Name:		nmap
-Version:	2.53
+Version:	2.54BETA2
 Release:	1
 License:	GPL
 Group:		Networking
 Group(pl):	Sieciowe
-Source0:	http://www.insecure.org/nmap/%{name}-%{version}.tgz
-Patch0:		nmap-DESTDIR.patch
+Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
+Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	gtk+-devel >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
