@@ -6,7 +6,7 @@ Summary(ru):	Утилита сканирования сети и аудита безопасности
 Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Name:		nmap
 Version:	2.54BETA34
-Release:	1
+Release:	3
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
