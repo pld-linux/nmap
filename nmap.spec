@@ -39,6 +39,7 @@ Group:		X11/Applications/Networking
 Group(pl):	X11/Aplikacje/Sieciowe
 Requires:	%{name} = %{version}
 Requires:	gtk+
+Obsoletes:	nmap-frontend
 
 %description X11
 This package includes nmapfe, a Gtk+ frontend for nmap.
@@ -66,12 +67,14 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/nmap} \
 	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,%{_prefix}/X11R6/man/man1} \
 	$RPM_BUILD_ROOT%{_applnkdir}/Networking
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	deskdir=%{_applnkdir}/Networking
+
 mv -f $RPM_BUILD_ROOT%{_bindir}/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/{xnmap,nmapfe}.1 $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1
 rm -f $RPM_BUILD_ROOT%{_bindir}/xnmap
 ln -sf %{_prefix}/X11R6/bin/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xnmap
-mv -f $RPM_BUILD_ROOT%{_datadir}/gnome/apps/Utilities/nmapfe.desktop $RPM_BUILD_ROOT%{_applnkdir}/Networking
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* docs/*.txt \
 	$RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1/*
@@ -89,6 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_prefix}/X11R6/bin/nmapfe
-%{_prefix}/X11R6/bin/xnmap
+%attr(755,root,root) %{_prefix}/X11R6/bin/xnmap
 %{_prefix}/X11R6/man/man1/*
 %{_applnkdir}/Networking/nmapfe.desktop
