@@ -12,7 +12,7 @@ Summary(zh_CN):	[系统]强力端口扫描器
 Summary(zh_TW):	[.)B╰.$)B参].)B眏.$)B狠.)B.$)B苯.)B磞.$)B竟
 Name:		nmap
 Version:	3.75
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
