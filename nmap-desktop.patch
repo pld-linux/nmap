@@ -14,6 +14,7 @@
 +Comment[uk]=Утиліта сканування мережі та аудиту безпеки
  Exec=nmapfe
 +Icon=nmap.png
- Terminal=0
+-Terminal=0
++Termonal=false
  Type=Application
-+Categories=Application;Network
++Categories=Application;Network;
