@@ -25,17 +25,17 @@ jak i pojedynczych serwerów.
 %build
 CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
 ./configure %{_target_platform} \
-	--prefix=/usr
+	--prefix=%{_prefix}
 
 make CCOPT="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_mandir}/man1}
 
 make \
-    prefix=$RPM_BUILD_ROOT/usr \
+    prefix=$RPM_BUILD_ROOT%{_prefix} \
     install
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* 
