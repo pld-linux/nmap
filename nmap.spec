@@ -5,7 +5,7 @@ Summary(pt_BR):	Ferramenta de exploraГЦo da rede e seguranГa
 Summary(ru):	Утилита сканирования сети и аудита безопасности
 Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Name:		nmap
-Version:	2.54BETA33
+Version:	2.54BETA34
 Release:	1
 License:	GPL
 Group:		Networking
