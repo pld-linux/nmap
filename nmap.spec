@@ -11,13 +11,13 @@ Summary(zh_CN):	[ÏµÍ³]Ç¿Á¦¶Ë¿ÚÉ¨ÃèÆ÷
 Summary(zh_TW):	[.)B¨t.$)B²Î].)B±j¤O.$)BºÝ.)B¤f.$)B±½.)B´y.$)B¾¹
 Name:		nmap
 Version:	3.20
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
+Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
-Source1:	%{name}.desktop
-Source2:	%{name}.png
+Patch1:		%{name}-desktop.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -110,6 +110,7 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal}
@@ -131,22 +132,20 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/nmap} \
-	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,%{_prefix}/X11R6/man/man1} \
-	$RPM_BUILD_ROOT{%{_applnkdir}/Network,%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	deskdir=%{_applnkdir}/Network
+	deskdir=%{_desktopdir}
+	
+%if %{!?_without_X:1}0
+cd $RPM_BUILD_ROOT%{_bindir}
+rm xnmap
+ln -s nmapfe xnmap
+cd -
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network
-install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
-%if %{!?_without_X:1}%{?_without_X:0}
-mv -f $RPM_BUILD_ROOT%{_bindir}/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin
-mv -f $RPM_BUILD_ROOT%{_mandir}/man1/{xnmap,nmapfe}.1 $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1
-rm -f $RPM_BUILD_ROOT%{_bindir}/xnmap
-ln -sf %{_prefix}/X11R6/bin/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xnmap
+install %{SOURCE1} $RPM_BUILD_ROOT%{_pixmapsdir}
 %endif
 
 %clean
@@ -157,14 +156,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/*.txt CHANGELOG
 %attr(755,root,root) %{_bindir}/nmap
 %{_datadir}/nmap
-%{_mandir}/man1/*
+%{_mandir}/man1/nmap.*
 
-%if %{!?_without_X:1}%{?_without_X:0}
+%if %{!?_without_X:1}0
 %files X11
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_prefix}/X11R6/bin/nmapfe
-%attr(755,root,root) %{_prefix}/X11R6/bin/xnmap
-%{_prefix}/X11R6/man/man1/*
-%{_applnkdir}/Network/nmap.desktop
-%{_pixmapsdir}/*
+%attr(755,root,root) %{_bindir}/nmapfe
+%attr(755,root,root) %{_bindir}/xnmap
+%{_mandir}/man1/nmapfe.*
+%{_mandir}/man1/xnmap.*
+%{_desktopdir}/nmapfe.desktop
+%{_pixmapsdir}/nmap.png
 %endif
