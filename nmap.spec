@@ -14,7 +14,6 @@ Group(pt_BR):	Rede
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
-Patch2:		%{name}-desktop.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	gtk+-devel >= 1.0
 BuildRequires:	autoconf
@@ -79,7 +78,6 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 aclocal
