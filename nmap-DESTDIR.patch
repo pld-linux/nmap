@@ -1,25 +1,25 @@
---- Makefile.in~	Sun Apr  4 04:31:45 1999
-+++ Makefile.in	Wed Jul 21 20:01:49 1999
-@@ -107,14 +107,14 @@
+diff -Naur nmap-2.53/Makefile.in nmap-2.53-p/Makefile.in
+--- nmap-2.53/Makefile.in	Tue May  9 08:25:42 2000
++++ nmap-2.53-p/Makefile.in	Sat Jun 24 22:37:04 2000
+@@ -140,14 +140,14 @@
  	$(MAKEDEPEND) $(INCLS) -s "# DO NOT DELETE" -- $(DEFS) -- $(SRCS)
  
- install: all
--	$(INSTALL) -d $(bindir) 
--	$(INSTALL) -d $(mandir) 
--	$(INSTALL) -d $(mandir)/man1
--	$(INSTALL) -d $(libdir)
--	$(INSTALL) -m 755 $(TARGET) $(bindir)/$(TARGET)
--	$(INSTALL) -m 644 docs/$(TARGET).1 $(mandir)/man1/$(TARGET).1
--	$(INSTALL) -m 644 nmap-os-fingerprints  $(libdir)/nmap-os-fingerprints
--	$(INSTALL) -m 644 nmap-services  $(libdir)/nmap-services
-+	$(INSTALL) -d $(DESTDIR)$(bindir) 
-+	$(INSTALL) -d $(DESTDIR)$(mandir) 
-+	$(INSTALL) -d $(DESTDIR)$(mandir)/man1
-+	$(INSTALL) -d $(DESTDIR)$(libdir)
-+	$(INSTALL) -m 755 $(TARGET) $(DESTDIR)$(bindir)/$(TARGET)
-+	$(INSTALL) -m 644 docs/$(TARGET).1 $(DESTDIR)$(mandir)/man1/$(TARGET).1
-+	$(INSTALL) -m 644 nmap-os-fingerprints  $(DESTDIR)$(libdir)/nmap-os-fingerprints
-+	$(INSTALL) -m 644 nmap-services  $(DESTDIR)$(libdir)/nmap-services
+ install: $(TARGET)
+-	$(SHTOOL) mkdir -f -p -m 755 $(bindir) $(mandir)/man1 $(nmapdatadir) $(deskdir)
+-	$(INSTALL) -c -m 755 nmap $(bindir)/nmap
++	$(SHTOOL) mkdir -f -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1 $(DESTDIR)$(nmapdatadir) $(DESTDIR)$(deskdir)
++	$(INSTALL) -c -m 755 nmap $(DESTDIR)$(bindir)/nmap
+ 	@echo "If the next command fails -- you cannot use the X front end"
+-	-test -f nmapfe/nmapfe && $(INSTALL) -c -m 755 nmapfe/nmapfe $(bindir)/nmapfe && $(SHTOOL) mkln -f -s $(bindir)/nmapfe $(bindir)/xnmap && $(INSTALL) -c -m 644 nmapfe.desktop $(deskdir)/nmapfe.desktop && $(INSTALL) -c -m 644 docs/nmapfe.1 $(mandir)/man1/nmapfe.1 && $(INSTALL) -c -m 644 docs/xnmap.1 $(mandir)/man1/xnmap.1
+-	$(INSTALL) -c -m 644 docs/$(TARGET).1 $(mandir)/man1/$(TARGET).1
+-	$(INSTALL) -c -m 644 nmap-os-fingerprints  $(nmapdatadir)/nmap-os-fingerprints
+-	$(INSTALL) -c -m 644 nmap-services  $(nmapdatadir)/nmap-services
+-	$(INSTALL) -c -m 644 nmap-rpc  $(nmapdatadir)/nmap-rpc
++	-test -f nmapfe/nmapfe && $(INSTALL) -c -m 755 nmapfe/nmapfe $(DESTDIR)$(bindir)/nmapfe && $(SHTOOL) mkln -f -s $(bindir)/nmapfe $(DESTDIR)$(bindir)/xnmap && $(INSTALL) -c -m 644 nmapfe.desktop $(DESTDIR)$(deskdir)/nmapfe.desktop && $(INSTALL) -c -m 644 docs/nmapfe.1 $(DESTDIR)$(mandir)/man1/nmapfe.1 && $(INSTALL) -c -m 644 docs/xnmap.1 $(DESTDIR)$(mandir)/man1/xnmap.1
++	$(INSTALL) -c -m 644 docs/$(TARGET).1 $(DESTDIR)$(mandir)/man1/$(TARGET).1
++	$(INSTALL) -c -m 644 nmap-os-fingerprints  $(DESTDIR)$(nmapdatadir)/nmap-os-fingerprints
++	$(INSTALL) -c -m 644 nmap-services  $(DESTDIR)$(nmapdatadir)/nmap-services
++	$(INSTALL) -c -m 644 nmap-rpc  $(DESTDIR)$(nmapdatadir)/nmap-rpc
  
  uninstall:
  	rm -f $(bindir)/$(TARGET)
