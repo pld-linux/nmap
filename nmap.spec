@@ -68,11 +68,11 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/nmap} \
 	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,%{_prefix}/X11R6/man/man1} \
-	$RPM_BUILD_ROOT%{_applnkdir}/Networking
+	$RPM_BUILD_ROOT%{_applnkdir}/Network
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	deskdir=%{_applnkdir}/Networking
+	deskdir=%{_applnkdir}/Network
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/{xnmap,nmapfe}.1 $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1
@@ -96,4 +96,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_prefix}/X11R6/bin/nmapfe
 %attr(755,root,root) %{_prefix}/X11R6/bin/xnmap
 %{_prefix}/X11R6/man/man1/*
-%{_applnkdir}/Networking/nmapfe.desktop
+%{_applnkdir}/Network/nmapfe.desktop
