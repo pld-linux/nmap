@@ -5,8 +5,8 @@ Summary(pt_BR):	Ferramenta de exploraГЦo da rede e seguranГa
 Summary(ru):	Утилита сканирования сети и аудита безопасности
 Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Name:		nmap
-Version:	2.54BETA34
-Release:	3
+Version:	2.54BETA36
+Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
@@ -14,6 +14,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-ac25x.patch
+Patch2:		http://www.seb.peterson.easynet.be/nmap/nmap-2.54BETA36_ipv6.diff
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -106,6 +107,7 @@ a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 aclocal
