@@ -23,4 +23,4 @@ diff -burN nmap-3.75.orig/nmapfe.desktop nmap-3.75/nmapfe.desktop
  Type=Application
 -Categories=Application;Network;System;Security;GTK
 \ Brak znaku nowej linii na koñcu pliku
-+Categories=GTK;Application;Network;
++Categories=GTK;Network;
