@@ -21,6 +21,7 @@ Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
 Patch2:		%{name}-statistics.patch
+Patch3:		%{name}-am18.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -115,6 +116,7 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 cp /usr/share/automake/config.sub .
@@ -122,11 +124,13 @@ cp /usr/share/automake/config.sub .
 %{__autoconf}
 cd nbase
 cp /usr/share/automake/config.sub .
+# AC_C___ATTRIBUTE__
+tail -n +302 aclocal.m4 >> acinclude.m4
 %{__aclocal}
 %{__autoconf}
 cd ../libpcap-possiblymodified
 cp /usr/share/automake/config.sub .
-%{__aclocal}
+# don't run aclocal - only local macros here!
 %{__autoconf}
 cd ../nmapfe
 cp /usr/share/automake/config.sub .
