@@ -140,6 +140,7 @@ cp /usr/share/automake/config.sub .
 cd ../..
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure \
+	--enable-ipv6 \
 	%{!?with_x:--without-nmapfe}
 
 %{__make}
