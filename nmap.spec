@@ -9,7 +9,7 @@ Group(pl):   	Sieciowe
 Source:		http://www.insecure.org/nmap/%{name}-%{version}.tgz
 Patch:		nmap-DESTDIR.patch
 URL:            http://www.insecure.org/nmap/index.html
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libdir		%{_datadir}
 
