@@ -130,7 +130,9 @@ cd ../nmapfe
 %{__aclocal}
 %{__autoconf}
 cd ..
-%configure %{?_without_x:--without-nmapfe}
+CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+%configure \
+	%{?_without_X:--without-nmapfe}
 
 %{__make}
 
@@ -140,7 +142,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	deskdir=%{_desktopdir}
+	deskdir=%{_applnkdir}/Network
 
 %if %{!?_without_x:1}0
 cd $RPM_BUILD_ROOT%{_bindir}
@@ -161,13 +163,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.*
 
-%if %{!?_without_x:1}0
+%if %{!?_without_X:1}0
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
 %{_mandir}/man1/nmapfe.*
 %{_mandir}/man1/xnmap.*
-%{_desktopdir}/nmapfe.desktop
+%{_applnkdir}/Network/nmapfe.desktop
 %{_pixmapsdir}/nmap.png
 %endif
