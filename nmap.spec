@@ -1,13 +1,17 @@
-Summary:	Port scanner
+Summary:	Network exploration tool and security scanner
 Summary(es):	Herramienta de exploraciСn de la rede y seguridad
-Summary(pl):	Skaner portСw
+Summary(pl):	Programem do badania i audytu sieci
 Summary(pt_BR):	Ferramenta de exploraГЦo da rede e seguranГa
+Summary(ru):	Утилита сканирования сети и аудита безопасности
+Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Name:		nmap
 Version:	2.54BETA32
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
+Source1:	%{name}.desktop
+Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
 URL:		http://www.insecure.org/nmap/index.html
@@ -17,9 +21,14 @@ BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Nmap is designed to allow system administrators and curious
-individuals to scan large networks to determine which hosts are up and
-what services they are offering.
+Nmap is a utility for network exploration or security auditing. It
+supports ping scanning (determine which hosts are up), many port
+scanning techniques (determine what services the hosts are offering),
+and TCP/IP fingerprinting (remote host operating system
+identification). Nmap also offers flexible target and port
+specification, decoy scanning, determination of TCP sequence
+predictability characteristics, sunRPC scanning, reverse-identd
+scanning, and more.
 
 nmap supports a large number of scanning techniques such as: UDP, TCP
 connect(), TCP SYN (half open), ftp proxy (bounce attack),
@@ -33,14 +42,13 @@ abiertos, e identificaciСn remota de sistemas operacionales vМa
 impresiones digitales TCP/IP.
 
 %description -l pl
-Nmap jest programem przeznaczonym do skanowania du©ych sieci jak i
-pojedynczych serwerСw w celu okre╤lenia ktСre hosty w danym momencie
-pracuj╠, a tak©e jakie serwisy oferuj╠.
-
-nmap oferuje rС©ne techniki skanowania wykorzystuj╠ce: UDP, TCP
-connect(), TCP SYN (half open), ftp proxy (bounce attack),
-Reverse-ident, ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN
-sweep, and Null scan.
+Nmap jest programem przeznaczonym do badania i audytu sieci. Wspiera
+rС©ne techniki skanowania (badanie jakie usЁugi s╠ uruchomione na
+danym ho╤cie), a tak©e TCP/IP fingerprinting (zdalne rozpoznawanie
+typu systemu operacyjnego). Nmap oferuje rС©ne techniki skanowania
+wykorzystuj╠ce: UDP, TCP connect(), TCP SYN (half open), ftp proxy
+(bounce attack), Reverse-ident, ICMP (ping sweep), FIN, ACK sweep,
+Xmas Tree, SYN sweep, and Null scan.
 
 %description -l pt_BR
 Nmap И um utilitАrio para a exploraГЦo e auditoria de redes. Ele
@@ -48,13 +56,33 @@ suporta "ping scanning", vАrias tИcnicas de procura por portas
 abertas, e identificaГЦo remota de sistemas operacionais via
 impressУes digitais TCP/IP.
 
+%description -l ru
+Nmap - это утилита для изучения сети и аудита безопасности. Она
+поддерживает ping-сканирование (определение, какие хосты работают),
+много методик сканирования портов (определение, какие сервисы
+предоставляют хосты), и "отпечатки пальцев" TCP/IP (идентификация
+операционной системы хоста). Nmap также поддерживает гибкое задание
+цели и порта, скрытое сканирование (decoy scanning), определение
+характеристик предсказуемости TCP sequence, сканирование sunRPC,
+reverse-identd сканирование и другое.
+
+%description -l uk
+Nmap - це утил╕та для досл╕дження мереж╕ та аудиту безпеки. Вона
+п╕дтриму╓ ping-сканування (визначення, як╕ хости працюють), багато
+методик сканування порт╕в (визначення, як╕ серв╕си надають хости), та
+"в╕дбитки пальц╕в" TCP/IP (╕дентиф╕кац╕я операц╕йно╖ системи хоста).
+Nmap також п╕дтриму╓ гнучке задання ц╕л╕ та порта, приховане
+сканування (decoy scanning), визначення характеристик передбачуваност╕
+TCP sequence, сканування sunRPC, reverse-identd сканування та ╕нше.
+
 %package X11
 Summary:	Gtk+ frontend for nmap
 Summary(pl):	Frontend Gtk+ dla nmapa
 Summary(pt_BR):	Frontend gtk+ para o nmap
+Summary(ru):	Gtk+ интерфейс для nmap
+Summary(uk):	Gtk+ ╕нтерфейс для nmap
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}
-Requires:	gtk+
 Obsoletes:	nmap-frontend
 
 %description X11
@@ -67,6 +95,12 @@ Gtk+.
 %description X11 -l pt_BR
 Frontend grАfico para o nmap (nmapfe) escrito em gtk+. NЦo contИm toda
 a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
+
+%description X11 -l ru
+Этот пакет содержит nmapfe, Gtk+ интерфейс для nmap.
+
+%description X11 -l uk
+Цей пакет м╕стить nmapfe, Gtk+ ╕нтерфейс для nmap.
 
 %prep
 %setup -q
@@ -93,11 +127,14 @@ autoconf)
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/nmap} \
 	$RPM_BUILD_ROOT{%{_prefix}/X11R6/bin,%{_prefix}/X11R6/man/man1} \
-	$RPM_BUILD_ROOT%{_applnkdir}/Network
+	$RPM_BUILD_ROOT{%{_applnkdir}/Network,%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	deskdir=%{_applnkdir}/Network
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %if %{!?_without_X:1}%{?_without_X:0}
 mv -f $RPM_BUILD_ROOT%{_bindir}/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin
@@ -124,5 +161,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_prefix}/X11R6/bin/nmapfe
 %attr(755,root,root) %{_prefix}/X11R6/bin/xnmap
 %{_prefix}/X11R6/man/man1/*
-%{_applnkdir}/Network/nmapfe.desktop
+%{_applnkdir}/Network/nmap.desktop
+%{_pixmapsdir}/*
 %endif
