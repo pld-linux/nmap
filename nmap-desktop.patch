@@ -1,10 +1,15 @@
 --- nmap-3.25/nmapfe.desktop~	Sun Mar 30 12:51:07 2003
 +++ nmap-3.25/nmapfe.desktop	Sun Apr 20 11:18:29 2003
-@@ -1,6 +1,14 @@
+@@ -1,11 +1,14 @@
  [Desktop Entry]
--Name=Nmap Security Scanner GUI
--Comment=Execute Nmap security/port scans
-+Encoding=UTF-8
+-Name=NmapFE
+-GenericName=Security Scanner
+-Comment=GUI frontend for Nmap security/port scanner
+-Version=1.0
+ Encoding=UTF-8
+-TryExec=nmapfe
+-Icon=icon-network
+-Terminal=false
 +Name=Nmap
 +Comment=Gtk+ frontend to nmap
 +Comment[es]=Herramienta de exploración de la rede y seguridad
@@ -12,9 +17,10 @@
 +Comment[pt]=Ferramenta de exploração da rede e segurança
 +Comment[ru]=Утилита сканирования сети и аудита безопасности
 +Comment[uk]=Утиліта сканування мережі та аудиту безпеки
- Exec=nmapfe
++Exec=nmapfe
 +Icon=nmap.png
--Terminal=0
 +Termonal=false
  Type=Application
+-Categories=Application;Network;System;Security;GTK
+\ Brak znaku nowej linii na ko�cu pliku
 +Categories=Application;Network;
