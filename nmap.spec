@@ -11,7 +11,7 @@ Summary(zh_CN):	[系统]强力端口扫描器
 Summary(zh_TW):	[.)B╰.$)B参].)B眏.$)B狠.)B.$)B苯.)B磞.$)B竟
 Name:		nmap
 Version:	3.20
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
@@ -139,7 +139,7 @@ rm -rf $RPM_BUILD_ROOT
 	
 %if %{!?_without_X:1}0
 cd $RPM_BUILD_ROOT%{_bindir}
-rm xnmap
+rm -f xnmap
 ln -s nmapfe xnmap
 cd -
 
