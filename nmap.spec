@@ -130,7 +130,9 @@ cd ../nmapfe
 %{__aclocal}
 %{__autoconf}
 cd ..
-%configure %{?_without_x:--without-nmapfe}
+CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+%configure \
+	%{?_without_x:--without-nmapfe}
 
 %{__make}
 
