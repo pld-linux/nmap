@@ -14,10 +14,11 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
+Patch2:		%{name}-ac25x.patch
 URL:		http://www.insecure.org/nmap/index.html
-BuildRequires:	gtk+-devel >= 1.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gtk+-devel >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -106,19 +107,21 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 aclocal
 autoconf
-(cd nbase
+cd nbase
 aclocal
-autoconf)
-(cd libpcap-possiblymodified
+autoconf
+cd ../libpcap-possiblymodified
 aclocal
-autoconf)
-(cd nmapfe
+autoconf
+cd ../nmapfe
 aclocal
-autoconf)
+autoconf
+cd ..
 %configure
 
 %{__make}
@@ -143,14 +146,12 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/xnmap
 ln -sf %{_prefix}/X11R6/bin/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xnmap
 %endif
 
-gzip -9nf docs/*.txt CHANGELOG
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.gz *.gz
+%doc docs/*.txt CHANGELOG
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/nmap
 %{_mandir}/man1/*
