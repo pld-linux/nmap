@@ -79,14 +79,14 @@ mv -f $RPM_BUILD_ROOT%{_mandir}/man1/{xnmap,nmapfe}.1 $RPM_BUILD_ROOT%{_prefix}/
 rm -f $RPM_BUILD_ROOT%{_bindir}/xnmap
 ln -sf %{_prefix}/X11R6/bin/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xnmap
 
-gzip -9nf docs/*.txt
+gzip -9nf docs/*.txt CHANGELOG
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc docs/*.gz
+%doc docs/*.gz *.gz
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/nmap
 %{_mandir}/man1/*
