@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_x	- don't build gtk-based nmap-X11
+%bcond_without x		# don't build gtk-based nmap-X11
 #
 Summary:	Network exploration tool and security scanner
 Summary(es):	Herramienta de exploración de la rede y seguridad
@@ -24,7 +24,7 @@ Patch2:		%{name}-statistics.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{!?_without_x:BuildRequires:	gtk+-devel >= 1.0}
+%{?with_x:BuildRequires:	gtk+-devel >= 1.0}
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -126,13 +126,13 @@ cd ../libpcap-possiblymodified
 %{__aclocal}
 %{__autoconf}
 cd ../nmapfe
-%{?_without_x:echo 'AC_DEFUN([AM_PATH_GTK],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
+%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
 %{__aclocal}
 %{__autoconf}
 cd ..
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure \
-	%{?_without_x:--without-nmapfe}
+	%{!?with_x:--without-nmapfe}
 
 %{__make}
 
@@ -144,7 +144,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 	DESTDIR=$RPM_BUILD_ROOT \
 	deskdir=%{_desktopdir}
 
-%if %{!?_without_x:1}0
+%if %{?with_x}
 cd $RPM_BUILD_ROOT%{_bindir}
 rm -f xnmap
 ln -s nmapfe xnmap
@@ -163,7 +163,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.*
 
-%if %{!?_without_x:1}0
+%if %{?with_x}
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
