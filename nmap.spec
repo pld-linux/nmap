@@ -74,10 +74,12 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/nmap} \
 	DESTDIR=$RPM_BUILD_ROOT \
 	deskdir=%{_applnkdir}/Network
 
+%if %{!?_without_X:1}%{?_without_X:0}
 mv -f $RPM_BUILD_ROOT%{_bindir}/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/{xnmap,nmapfe}.1 $RPM_BUILD_ROOT%{_prefix}/X11R6/man/man1
 rm -f $RPM_BUILD_ROOT%{_bindir}/xnmap
 ln -sf %{_prefix}/X11R6/bin/nmapfe $RPM_BUILD_ROOT%{_prefix}/X11R6/bin/xnmap
+%endif
 
 gzip -9nf docs/*.txt CHANGELOG
 
@@ -91,9 +93,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/nmap
 %{_mandir}/man1/*
 
+%if %{!?_without_X:1}%{?_without_X:0}
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_prefix}/X11R6/bin/nmapfe
 %attr(755,root,root) %{_prefix}/X11R6/bin/xnmap
 %{_prefix}/X11R6/man/man1/*
 %{_applnkdir}/Network/nmapfe.desktop
+%endif
