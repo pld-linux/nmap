@@ -11,13 +11,14 @@ Summary(zh_CN):	[ÏµÍ³]Ç¿Á¦¶Ë¿ÚÉ¨ÃèÆ÷
 Summary(zh_TW):	[.)B¨t.$)B²Î].)B±j¤O.$)BºÝ.)B¤f.$)B±½.)B´y.$)B¾¹
 Name:		nmap
 Version:	3.26
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
 Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
+Patch2:		%{name}-statistics.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -111,6 +112,7 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__aclocal}
