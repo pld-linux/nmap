@@ -39,7 +39,7 @@ predictability characteristics, sunRPC scanning, reverse-identd
 scanning, and more.
 
 nmap supports a large number of scanning techniques such as: UDP, TCP
-connect(), TCP SYN (half open), ftp proxy (bounce attack),
+connect(), TCP SYN (half open), FTP proxy (bounce attack),
 Reverse-ident, ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN
 sweep, and Null scan.
 
@@ -54,7 +54,7 @@ Nmap jest programem przeznaczonym do badania i audytu sieci. Wspiera
 ró¿ne techniki skanowania (badanie jakie us³ugi s± uruchomione na
 danym ho¶cie), a tak¿e TCP/IP fingerprinting (zdalne rozpoznawanie
 typu systemu operacyjnego). Nmap oferuje ró¿ne techniki skanowania
-wykorzystuj±ce: UDP, TCP connect(), TCP SYN (half open), ftp proxy
+wykorzystuj±ce: UDP, TCP connect(), TCP SYN (half open), FTP proxy
 (bounce attack), Reverse-ident, ICMP (ping sweep), FIN, ACK sweep,
 Xmas Tree, SYN sweep i Null scan.
 
