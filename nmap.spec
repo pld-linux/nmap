@@ -11,17 +11,16 @@ Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
 Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
-Version:	3.50
+Version:	3.55
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	b4363f445a7c502cf314ae88ab71ec6c
+# Source0-md5:	88b5f010f43b0e2ee0c2cfb468796aa9
 Source1:	%{name}.png
-Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-desktop.patch
-Patch2:		%{name}-statistics.patch
-Patch3:		%{name}-am18.patch
+Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-statistics.patch
+Patch2:		%{name}-am18.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -116,7 +115,6 @@ a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 cp /usr/share/automake/config.sub .
