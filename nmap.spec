@@ -138,7 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	deskdir=%{_desktopdir}
+	deskdir=%{_applnkdir}/Network
 
 %if %{!?_without_X:1}0
 cd $RPM_BUILD_ROOT%{_bindir}
@@ -168,6 +168,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xnmap
 %{_mandir}/man1/nmapfe.*
 %{_mandir}/man1/xnmap.*
-%{_desktopdir}/nmapfe.desktop
+%{_applnkdir}/Network/nmapfe.desktop
 %{_pixmapsdir}/nmap.png
 %endif
