@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without x		# don't build gtk-based nmap-X11
+%bcond_without	x	# don't build gtk-based nmap-X11
 #
 Summary:	Network exploration tool and security scanner
 Summary(es):	Herramienta de exploración de la rede y seguridad
