@@ -10,12 +10,12 @@ Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
 Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
-Version:	3.27
+Version:	3.28
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5: 7dd965ee17397cb80775f226b0904010
+# Source0-md5:	ac46d6d7a5f7eec8d0281f656c23f2b4
 Source1:	%{name}.png
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-desktop.patch
