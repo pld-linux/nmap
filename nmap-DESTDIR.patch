@@ -1,7 +1,7 @@
 diff -urN nmap-3.15BETA1.org/Makefile.in nmap-3.15BETA1/Makefile.in
 --- nmap-3.15BETA1.org/Makefile.in	Thu Feb 20 17:38:08 2003
 +++ nmap-3.15BETA1/Makefile.in	Thu Feb 20 17:41:35 2003
-@@ -192,18 +192,18 @@
+@@ -254,19 +254,19 @@
  	$(MAKEDEPEND) $(INCLS) -s "# DO NOT DELETE" -- $(DEFS) -- $(SRCS)
  
  install-nmap: $(TARGET)
@@ -9,6 +9,7 @@ diff -urN nmap-3.15BETA1.org/Makefile.in nmap-3.15BETA1/Makefile.in
 -	$(INSTALL) -c -m 755 nmap $(bindir)/nmap
 -	$(INSTALL) -c -m 644 docs/$(TARGET).1 $(mandir)/man1/$(TARGET).1
 -	$(INSTALL) -c -m 644 nmap-os-fingerprints  $(nmapdatadir)/nmap-os-fingerprints
+-	$(INSTALL) -c -m 644 nmap-service-probes  $(nmapdatadir)/nmap-service-probes
 -	$(INSTALL) -c -m 644 nmap-services  $(nmapdatadir)/nmap-services
 -	$(INSTALL) -c -m 644 nmap-protocols  $(nmapdatadir)/nmap-protocols
 -	$(INSTALL) -c -m 644 nmap-rpc  $(nmapdatadir)/nmap-rpc
@@ -16,6 +17,7 @@ diff -urN nmap-3.15BETA1.org/Makefile.in nmap-3.15BETA1/Makefile.in
 +	$(INSTALL) -c -m 755 nmap $(DESTDIR)$(bindir)/nmap
 +	$(INSTALL) -c -m 644 docs/$(TARGET).1 $(DESTDIR)$(mandir)/man1/$(TARGET).1
 +	$(INSTALL) -c -m 644 nmap-os-fingerprints  $(DESTDIR)$(nmapdatadir)/nmap-os-fingerprints
++	$(INSTALL) -c -m 644 nmap-service-probes  $(DESTDIR)$(nmapdatadir)/nmap-service-probes
 +	$(INSTALL) -c -m 644 nmap-services  $(DESTDIR)$(nmapdatadir)/nmap-services
 +	$(INSTALL) -c -m 644 nmap-protocols  $(DESTDIR)$(nmapdatadir)/nmap-protocols
 +	$(INSTALL) -c -m 644 nmap-rpc  $(DESTDIR)$(nmapdatadir)/nmap-rpc
