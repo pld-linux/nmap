@@ -24,7 +24,7 @@ jak i pojedynczych serwerów.
 
 %build
 CFLAGS=$RPM_OPT_FLAGS LDFLAGS=-s \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=/usr
 
 make CCOPT="$RPM_OPT_FLAGS"
