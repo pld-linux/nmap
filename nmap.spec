@@ -7,10 +7,6 @@ Version:	2.54BETA30
 Release:	1
 License:	GPL
 Group:		Networking
-Group(de):	Netzwerkwesen
-Group(es):	Red
-Group(pl):	Sieciowe
-Group(pt_BR):	Rede
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-time.patch
@@ -57,8 +53,6 @@ Summary:	Gtk+ frontend for nmap
 Summary(pl):	Frontend Gtk+ dla nmapa
 Summary(pt_BR):	Frontend gtk+ para o nmap
 Group:		X11/Applications/Networking
-Group(de):	X11/Applikationen/Netzwerkwesen
-Group(pl):	X11/Aplikacje/Sieciowe
 Requires:	%{name} = %{version}
 Requires:	gtk+
 Obsoletes:	nmap-frontend
