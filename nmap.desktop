@@ -1,11 +1,11 @@
 [Desktop Entry]
 Name=Nmapfe
 Comment=Gtk+ frontend to nmap
-Comment[es]=Herramienta de exploraciСn de la rede y seguridad
+Comment[es]=Herramienta de exploraciцЁn de la rede y seguridad
 Comment[pl]=Gtk+ frontend do nmap
-Comment[pt]=Ferramenta de exploraГЦo da rede e seguranГa
-Comment[ru]=Утилита сканирования сети и аудита безопасности
-Comment[uk]=Утил╕та сканування мереж╕ та аудиту безпеки
+Comment[pt]=Ferramenta de exploraц╖цёo da rede e seguranц╖a
+Comment[ru]=пёя┌п╦п╩п╦я┌п╟ я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦я▐ я│п╣я┌п╦ п╦ п╟я┐п╢п╦я┌п╟ п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦
+Comment[uk]=пёя┌п╦п╩я√я┌п╟ я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ п╪п╣я─п╣п╤я√ я┌п╟ п╟я┐п╢п╦я┌я┐ п╠п╣п╥п©п╣п╨п╦
 Exec=nmapfe
 Terminal=0
 Type=Application
