@@ -57,10 +57,18 @@ Gtk+.
 %patch1 -p1
 
 %build
+aclocal
+autoconf
+(cd nbase
+aclocal
+autoconf)
+(cd libpcap-possiblymodified
+aclocal
+autoconf)
+(cd nmapfe
+aclocal
+autoconf)
 %configure
-cd libpcap-possiblymodified
-%configure
-cd ..
 
 %{__make}
 
