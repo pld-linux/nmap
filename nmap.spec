@@ -144,7 +144,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 	DESTDIR=$RPM_BUILD_ROOT \
 	deskdir=%{_desktopdir}
 
-%if %{with_x}
+%if %{with x}
 cd $RPM_BUILD_ROOT%{_bindir}
 rm -f xnmap
 ln -s nmapfe xnmap
@@ -163,7 +163,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.*
 
-%if %{with_x}
+%if %{with x}
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
