@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /usr/lib/nmap
 %attr(755,root,root) /usr/lib/nmap/*
 
-%attr(644,root, man) %{_mandir}/man1/*
+%{_mandir}/man1/*
 
 %changelog
 * Thu Feb 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
