@@ -21,6 +21,7 @@ Source2:	%{name}.png
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libstdc++-devel
 %{!?_without_X:BuildRequires:	gtk+-devel >= 1.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
