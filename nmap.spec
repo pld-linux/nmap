@@ -11,12 +11,12 @@ Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
 Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
-Version:	3.55
-Release:	1
+Version:	3.70
+Release:	0.1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	88b5f010f43b0e2ee0c2cfb468796aa9
+# Source0-md5:	b9a92e48324cd393edaef773b294f36b
 Source1:	%{name}.png
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-statistics.patch
@@ -113,7 +113,7 @@ a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#patch1 -p1
 %patch2 -p1
 
 %build
