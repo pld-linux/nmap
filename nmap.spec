@@ -11,24 +11,33 @@ Patch:		nmap-DESTDIR.patch
 URL:            http://www.insecure.org/nmap/index.html
 BuildRoot:	/tmp/%{name}-%{version}-root
 
+%define		_libdir		%{_datadir}
+
 %description
-nmap is a utility for port scanning large networks, although it works
-fine for single hosts.
+Nmap is designed to allow system administrators and curious individuals to
+scan large networks to determine which hosts are up and what services they
+are offering.
+
+nmap supports a large number of scanning techniques such as: UDP, TCP
+connect(), TCP SYN (half open), ftp proxy (bounce attack), Reverse-ident,
+ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN sweep, and Null scan.
 
 %description -l pl
 Nmap jest programem przeznaczonym do skanowania du¿ych sieci
-jak i pojedynczych serwerów.
+jak i pojedynczych serwerów w celu okre¶lenia które hosty w danym momencie
+pracuja, a tak¿e jakie serwisy oferuj±.
+
+nmap oferuje ró¿ne techniki skanowania wykorzystuj±ce: UDP, TCP connect(),
+TCP SYN (half open), ftp proxy (bounce attack), Reverse-ident,
+ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN sweep, and Null scan.
 
 %prep
 %setup -q
 %patch -p0
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
-	--prefix=%{_prefix} \
-	--mandir=%{_mandir} \
-	--libdir=%{_datadir}
+LDFLAGS="-s"; export LDFLAGS
+%configure
 
 make CCOPT="$RPM_OPT_FLAGS"
 
