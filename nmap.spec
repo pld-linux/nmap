@@ -1,15 +1,15 @@
-Summary:     Port scanner
-Name:	     nmap
-Version:     2.07
-Release:     1d
-Copyright:   GPL
-Group:	     Applications/Networking
-Group(pl):   Aplikacje/Sieæ
-URL:	     http://www.insecure.org/nmap/index.html
-Source:	     http://www.insecure.org/nmap/%{name}-%{version}.tgz
-BuildRoot:   /tmp/buildroot-%{name}-%{version}
-Vendor:	     Fyodor <fyodor@dhp.com>
-Summary(pl): Skaner portów
+Summary:	Port scanner
+Summary(pl):	Skaner portów
+Name:		nmap
+Version:	2.07
+Release:	2d
+Copyright:	GPL
+Group:		Networking
+Group(pl):   	Sieciowe
+URL:		http://www.insecure.org/nmap/index.html
+Source:		http://www.insecure.org/nmap/%{name}-%{version}.tgz
+BuildRoot:	/tmp/buildroot-%{name}-%{version}
+Vendor:		Fyodor <fyodor@dhp.com>
 
 %description
 nmap is a utility for port scanning large networks, although it works
@@ -32,22 +32,33 @@ make CCOPT="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/usr/{bin,lib,man/man1}
-make install prefix=$RPM_BUILD_ROOT/usr
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* docs/*.html
+make \
+    prefix=$RPM_BUILD_ROOT/usr \
+    install
+
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc docs/*.html.gz
+%doc docs/*.html
+
 %attr(755,root,root) /usr/bin/*
-%attr(755,root,root) /usr/lib/nmap/*
-%attr(644,root, man) /usr/man/man1/*
+
 %dir /usr/lib/nmap
+%attr(755,root,root) /usr/lib/nmap/*
+
+%attr(644,root, man) /usr/man/man1/*
 
 %changelog
+* Thu Feb 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [2.07-2d]
+- fixed Group,
+- removed gzipping html docs.
+
 * Sat Feb 13 1999 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
 - new upstream release
 - few small changes
