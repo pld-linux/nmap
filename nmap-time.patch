@@ -1,0 +1,12 @@
+diff -Nur nmap-2.54BETA20.orig/osscan.c nmap-2.54BETA20/osscan.c
+--- nmap-2.54BETA20.orig/osscan.c	Tue Mar  6 03:40:13 2001
++++ nmap-2.54BETA20/osscan.c	Sat Mar 10 18:47:58 2001
+@@ -47,7 +47,7 @@
+ 
+ /* $Id$ */
+ 
+-
++#include <time.h>
+ #include "osscan.h"
+ #include "timing.h"
+ 
