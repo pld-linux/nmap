@@ -4,7 +4,7 @@
 #
 Summary:	Network exploration tool and security scanner
 Summary(es):	Herramienta de exploraciСn de la rede y seguridad
-Summary(pl):	Programem do badania i audytu sieci
+Summary(pl):	Program do badania i audytu sieci
 Summary(pt_BR):	Ferramenta de exploraГЦo da rede e seguranГa
 Summary(ru):	Утилита сканирования сети и аудита безопасности
 Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
