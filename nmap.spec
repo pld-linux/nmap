@@ -1,4 +1,5 @@
 #
+# Conditional build:
 # _without_X	- don't build gtk-based nmap-X11
 #
 Summary:	Network exploration tool and security scanner
@@ -23,8 +24,8 @@ Patch2:		%{name}-statistics.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libstdc++-devel
 %{!?_without_X:BuildRequires:	gtk+-devel >= 1.0}
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -135,6 +136,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -145,8 +147,6 @@ cd $RPM_BUILD_ROOT%{_bindir}
 rm -f xnmap
 ln -s nmapfe xnmap
 cd -
-
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_pixmapsdir}
 %endif
