@@ -47,7 +47,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/*.html
 
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 
 %dir %{_libdir}/nmap
 %attr(755,root,root) %{_libdir}/nmap/*
