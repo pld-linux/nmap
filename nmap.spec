@@ -38,7 +38,7 @@ make \
     prefix=$RPM_BUILD_ROOT/usr \
     install
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man1/* 
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /usr/lib/nmap
 %attr(755,root,root) /usr/lib/nmap/*
 
-%attr(644,root, man) /usr/man/man1/*
+%attr(644,root, man) %{_mandir}/man1/*
 
 %changelog
 * Thu Feb 18 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
