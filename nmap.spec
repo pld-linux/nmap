@@ -10,7 +10,7 @@ Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
 Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
-Version:	3.25
+Version:	3.26
 Release:	1
 License:	GPL
 Group:		Networking
