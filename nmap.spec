@@ -10,16 +10,14 @@ Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
 Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
-Version:	3.00
+Version:	3.15BETA1
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tgz
+Patch0:		%{name}-DESTDIR.patch
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-Patch0:		%{name}-DESTDIR.patch
-#ipv6.patch based upon http://www.seb.peterson.easynet.be/nmap/nmap-2.54BETA36_ipv6.diff
-Patch1:		%{name}-ipv6.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -111,7 +109,6 @@ a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__aclocal}
