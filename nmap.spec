@@ -8,7 +8,7 @@ Group:		Networking
 Group(pl):   	Sieciowe
 URL:		http://www.insecure.org/nmap/index.html
 Source:		http://www.insecure.org/nmap/%{name}-%{version}.tgz
-BuildRoot:	/tmp/buildroot-%{name}-%{version}
+BuildRoot:	/tmp/%{name}-%{version}-root
 Vendor:		Fyodor <fyodor@dhp.com>
 
 %description
