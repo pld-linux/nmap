@@ -84,31 +84,31 @@ Nmap також п╕дтриму╓ гнучке задання ц╕л╕ та порта, приховане
 TCP sequence, сканування sunRPC, reverse-identd сканування та ╕нше.
 
 %package X11
-Summary:	Gtk+ frontend for nmap
-Summary(pl):	Frontend Gtk+ dla nmapa
-Summary(pt_BR):	Frontend gtk+ para o nmap
-Summary(ru):	Gtk+ интерфейс для nmap
-Summary(uk):	Gtk+ ╕нтерфейс для nmap
+Summary:	GTK+ frontend for nmap
+Summary(pl):	Frontend GTK+ dla nmapa
+Summary(pt_BR):	Frontend GTK+ para o nmap
+Summary(ru):	GTK+ интерфейс для nmap
+Summary(uk):	GTK+ ╕нтерфейс для nmap
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}
 Obsoletes:	nmap-frontend
 
 %description X11
-This package includes nmapfe, a Gtk+ frontend for nmap.
+This package includes nmapfe, a GTK+ frontend for nmap.
 
 %description X11 -l pl
 Ten pakiet zawiera nmapfe, czyli frontend dla nmapa pisany z u©yciem
-Gtk+.
+GTK+.
 
 %description X11 -l pt_BR
-Frontend grАfico para o nmap (nmapfe) escrito em gtk+. NЦo contИm toda
+Frontend grАfico para o nmap (nmapfe) escrito em GTK+. NЦo contИm toda
 a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
 
 %description X11 -l ru
-Этот пакет содержит nmapfe, Gtk+ интерфейс для nmap.
+Этот пакет содержит nmapfe, GTK+ интерфейс для nmap.
 
 %description X11 -l uk
-Цей пакет м╕стить nmapfe, Gtk+ ╕нтерфейс для nmap.
+Цей пакет м╕стить nmapfe, GTK+ ╕нтерфейс для nmap.
 
 %prep
 %setup -q
