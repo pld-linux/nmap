@@ -4,6 +4,8 @@ Summary(pl):	Programem do badania i audytu sieci
 Summary(pt_BR):	Ferramenta de exploraГЦo da rede e seguranГa
 Summary(ru):	Утилита сканирования сети и аудита безопасности
 Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
+Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
+Summary(zh_TW.Big5):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
 Version:	3.00
 Release:	1
