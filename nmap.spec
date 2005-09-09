@@ -1,4 +1,6 @@
 #
+# TODO: fix build on amd64
+#
 # Conditional build:
 %bcond_without	x	# don't build gtk-based nmap-X11
 #
@@ -12,7 +14,7 @@ Summary(zh_CN):	[系统]强力端口扫描器
 Summary(zh_TW):	[.)B╰.$)B参].)B眏.$)B狠.)B.$)B苯.)B磞.$)B竟
 Name:		nmap
 Version:	3.90
-Release:	1.1
+Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
@@ -136,8 +138,6 @@ cp /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 cd ../nsock/src
-cp /usr/share/automake/config.sub .
-cd ../../libdnet-stripped
 cp /usr/share/automake/config.sub .
 cd ../..
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
