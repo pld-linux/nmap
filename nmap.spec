@@ -117,27 +117,28 @@ a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
 %patch2 -p1
 
 %build
-cp /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 cd nbase
-cp /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 # AC_C___ATTRIBUTE__
 tail -n +302 aclocal.m4 >> acinclude.m4
 %{__aclocal}
 %{__autoconf}
 cd ../libpcap-possiblymodified
-cp /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 # don't run aclocal - only local macros here!
 %{__autoconf}
 cd ../nmapfe
-cp /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 %{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
 %{__aclocal}
 %{__autoconf}
 cd ../nsock/src
-cp /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 cd ../..
+cp -f /usr/share/automake/config.sub libdnet-stripped/config
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
 %configure \
 	--enable-ipv6 \
