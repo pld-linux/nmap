@@ -11,12 +11,12 @@ Summary(uk):	õÔÉÌ¦ÔÁ ÓËÁÎÕ×ÁÎÎÑ ÍÅÒÅÖ¦ ÔÁ ÁÕÄÉÔÕ ÂÅÚÐÅËÉ
 Summary(zh_CN):	[ÏµÍ³]Ç¿Á¦¶Ë¿ÚÉ¨ÃèÆ÷
 Summary(zh_TW):	[.)B¨t.$)B²Î].)B±j¤O.$)BºÝ.)B¤f.$)B±½.)B´y.$)B¾¹
 Name:		nmap
-Version:	3.90
-Release:	2
+Version:	3.93
+Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	0288e464b5de54c5f8cea265474c0f72
+# Source0-md5:	92e69a2e8db0eb59b5d71b8b363892f2
 Source1:	%{name}.png
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-statistics.patch
@@ -126,7 +126,7 @@ cp -f /usr/share/automake/config.sub .
 tail -n +302 aclocal.m4 >> acinclude.m4
 %{__aclocal}
 %{__autoconf}
-cd ../libpcap-possiblymodified
+cd ../libpcap
 cp -f /usr/share/automake/config.sub .
 # don't run aclocal - only local macros here!
 %{__autoconf}
