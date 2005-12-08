@@ -11,12 +11,12 @@ Summary(uk):	õÔÉÌ¦ÔÁ ÓËÁÎÕ×ÁÎÎÑ ÍÅÒÅÖ¦ ÔÁ ÁÕÄÉÔÕ ÂÅÚÐÅËÉ
 Summary(zh_CN):	[ÏµÍ³]Ç¿Á¦¶Ë¿ÚÉ¨ÃèÆ÷
 Summary(zh_TW):	[.)B¨t.$)B²Î].)B±j¤O.$)BºÝ.)B¤f.$)B±½.)B´y.$)B¾¹
 Name:		nmap
-Version:	3.93
+Version:	3.95
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	92e69a2e8db0eb59b5d71b8b363892f2
+# Source0-md5:	a16e9d7f7912af7c93faa794bd63b6d1
 Source1:	%{name}.png
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-statistics.patch
@@ -24,7 +24,7 @@ Patch2:		%{name}-am18.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_x:BuildRequires:	gtk+-devel >= 1.0}
+%{?with_x:BuildRequires:	gtk+2-devel}
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -163,14 +163,6 @@ cd -
 install %{SOURCE1} $RPM_BUILD_ROOT%{_pixmapsdir}
 %endif
 
-install -D docs/nmap_french.1 $RPM_BUILD_ROOT%{_mandir}/fr/man1/nmap.1
-install -D docs/nmap_german.1 $RPM_BUILD_ROOT%{_mandir}/de/man1/nmap.1
-install -D docs/nmap_italian.1 $RPM_BUILD_ROOT%{_mandir}/it/man1/nmap.1
-install -D docs/nmap_lithuanian.1 $RPM_BUILD_ROOT%{_mandir}/lt/man1/nmap.1
-install -D docs/nmap_portuguese.1 $RPM_BUILD_ROOT%{_mandir}/pt/man1/nmap.1
-install -D docs/nmap_russian.1 $RPM_BUILD_ROOT%{_mandir}/ru/man1/nmap.1
-install -D docs/nmap_spanish.1 $RPM_BUILD_ROOT%{_mandir}/es/man1/nmap.1
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -180,13 +172,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.1*
-%lang(de) %{_mandir}/de/man1/nmap.1*
-%lang(es) %{_mandir}/es/man1/nmap.1*
-%lang(fr) %{_mandir}/fr/man1/nmap.1*
-%lang(it) %{_mandir}/it/man1/nmap.1*
-%lang(lt) %{_mandir}/lt/man1/nmap.1*
-%lang(pt) %{_mandir}/pt/man1/nmap.1*
-%lang(ru) %{_mandir}/ru/man1/nmap.1*
 
 %if %{with x}
 %files X11
