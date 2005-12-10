@@ -135,7 +135,7 @@ cp -f /usr/share/automake/config.sub .
 %{__autoconf}
 cd ../nmapfe
 cp -f /usr/share/automake/config.sub .
-%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
+%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
 %{__aclocal}
 %{__autoconf}
 cd ../nsock/src
