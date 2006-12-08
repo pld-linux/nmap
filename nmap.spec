@@ -11,12 +11,12 @@ Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
 Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
 Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
 Name:		nmap
-Version:	4.11
-Release:	2
+Version:	4.20
+Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	69bdaa9995f32247b5da7c6b6c41df9b
+# Source0-md5:	ea50419f99472200c4184a304e3831ea
 Source1:	%{name}.png
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-statistics.patch
