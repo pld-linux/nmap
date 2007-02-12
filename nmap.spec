@@ -3,13 +3,13 @@
 %bcond_without	x	# don't build gtk-based nmap-X11
 #
 Summary:	Network exploration tool and security scanner
-Summary(es):	Herramienta de exploraciСn de la rede y seguridad
-Summary(pl):	Program do badania i audytu sieci
-Summary(pt_BR):	Ferramenta de exploraГЦo da rede e seguranГa
-Summary(ru):	Утилита сканирования сети и аудита безопасности
-Summary(uk):	Утил╕та сканування мереж╕ та аудиту безпеки
-Summary(zh_CN):	[о╣мЁ]г©а╕╤к©зи╗цХфВ
-Summary(zh_TW):	[.)B╗t.$)B╡н].)B╠j╓O.$)B╨щ.)B╓f.$)B╠╫.)B╢y.$)B╬╧
+Summary(es.UTF-8):   Herramienta de exploraciцЁn de la rede y seguridad
+Summary(pl.UTF-8):   Program do badania i audytu sieci
+Summary(pt_BR.UTF-8):   Ferramenta de exploraц╖цёo da rede e seguranц╖a
+Summary(ru.UTF-8):   пёя┌п╦п╩п╦я┌п╟ я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦я▐ я│п╣я┌п╦ п╦ п╟я┐п╢п╦я┌п╟ п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦
+Summary(uk.UTF-8):   пёя┌п╦п╩я√я┌п╟ я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ п╪п╣я─п╣п╤я√ я┌п╟ п╟я┐п╢п╦я┌я┐ п╠п╣п╥п©п╣п╨п╦
+Summary(zh_CN.UTF-8):   [ГЁ╩Г╩÷]Е╪╨Е┼⌡Г╚╞Е▐ёФ┴╚Ф▐▐Е≥╗
+Summary(zh_TW.UTF-8):   [.)BГЁ╩.$)BГ╣╠].)BЕ╪╥Е┼⌡.$)BГ╚╞.)BЕ▐ё.$)BФ▌┐.)BФ▐▐.$)BЕ≥╗
 Name:		nmap
 Version:	4.20
 Release:	1
@@ -46,52 +46,52 @@ connect(), TCP SYN (half open), FTP proxy (bounce attack),
 Reverse-ident, ICMP (ping sweep), FIN, ACK sweep, Xmas Tree, SYN
 sweep, and Null scan.
 
-%description -l es
-Nmap es un utilitario para la exploraciСn y auditorМa de redes.
-Soporta "ping scanning", varias tИcnicas de bЗsqueda de puertos
-abiertos, e identificaciСn remota de sistemas operacionales vМa
+%description -l es.UTF-8
+Nmap es un utilitario para la exploraciцЁn y auditorц╜a de redes.
+Soporta "ping scanning", varias tц╘cnicas de bц╨squeda de puertos
+abiertos, e identificaciцЁn remota de sistemas operacionales vц╜a
 impresiones digitales TCP/IP.
 
-%description -l pl
+%description -l pl.UTF-8
 Nmap jest programem przeznaczonym do badania i audytu sieci. Wspiera
-rС©ne techniki skanowania (badanie jakie usЁugi s╠ uruchomione na
-danym ho╤cie), a tak©e TCP/IP fingerprinting (zdalne rozpoznawanie
-typu systemu operacyjnego). Nmap oferuje rС©ne techniki skanowania
-wykorzystuj╠ce: UDP, TCP connect(), TCP SYN (half open), FTP proxy
+rцЁе╪ne techniki skanowania (badanie jakie usе┌ugi sд┘ uruchomione na
+danym hoе⌡cie), a takе╪e TCP/IP fingerprinting (zdalne rozpoznawanie
+typu systemu operacyjnego). Nmap oferuje rцЁе╪ne techniki skanowania
+wykorzystujд┘ce: UDP, TCP connect(), TCP SYN (half open), FTP proxy
 (bounce attack), Reverse-ident, ICMP (ping sweep), FIN, ACK sweep,
 Xmas Tree, SYN sweep i Null scan.
 
-%description -l pt_BR
-Nmap И um utilitАrio para a exploraГЦo e auditoria de redes. Ele
-suporta "ping scanning", vАrias tИcnicas de procura por portas
-abertas, e identificaГЦo remota de sistemas operacionais via
-impressУes digitais TCP/IP.
+%description -l pt_BR.UTF-8
+Nmap ц╘ um utilitц║rio para a exploraц╖цёo e auditoria de redes. Ele
+suporta "ping scanning", vц║rias tц╘cnicas de procura por portas
+abertas, e identificaц╖цёo remota de sistemas operacionais via
+impressц╣es digitais TCP/IP.
 
-%description -l ru
-Nmap - это утилита для изучения сети и аудита безопасности. Она
-поддерживает ping-сканирование (определение, какие хосты работают),
-много методик сканирования портов (определение, какие сервисы
-предоставляют хосты), и "отпечатки пальцев" TCP/IP (идентификация
-операционной системы хоста). Nmap также поддерживает гибкое задание
-цели и порта, скрытое сканирование (decoy scanning), определение
-характеристик предсказуемости TCP sequence, сканирование sunRPC,
-reverse-identd сканирование и другое.
+%description -l ru.UTF-8
+Nmap - я█я┌п╬ я┐я┌п╦п╩п╦я┌п╟ п╢п╩я▐ п╦п╥я┐я┤п╣п╫п╦я▐ я│п╣я┌п╦ п╦ п╟я┐п╢п╦я┌п╟ п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦. п·п╫п╟
+п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ ping-я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦п╣ (п╬п©я─п╣п╢п╣п╩п╣п╫п╦п╣, п╨п╟п╨п╦п╣ я┘п╬я│я┌я▀ я─п╟п╠п╬я┌п╟я▌я┌),
+п╪п╫п╬пЁп╬ п╪п╣я┌п╬п╢п╦п╨ я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦я▐ п©п╬я─я┌п╬п╡ (п╬п©я─п╣п╢п╣п╩п╣п╫п╦п╣, п╨п╟п╨п╦п╣ я│п╣я─п╡п╦я│я▀
+п©я─п╣п╢п╬я│я┌п╟п╡п╩я▐я▌я┌ я┘п╬я│я┌я▀), п╦ "п╬я┌п©п╣я┤п╟я┌п╨п╦ п©п╟п╩я▄я├п╣п╡" TCP/IP (п╦п╢п╣п╫я┌п╦я└п╦п╨п╟я├п╦я▐
+п╬п©п╣я─п╟я├п╦п╬п╫п╫п╬п╧ я│п╦я│я┌п╣п╪я▀ я┘п╬я│я┌п╟). Nmap я┌п╟п╨п╤п╣ п©п╬п╢п╢п╣я─п╤п╦п╡п╟п╣я┌ пЁп╦п╠п╨п╬п╣ п╥п╟п╢п╟п╫п╦п╣
+я├п╣п╩п╦ п╦ п©п╬я─я┌п╟, я│п╨я─я▀я┌п╬п╣ я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦п╣ (decoy scanning), п╬п©я─п╣п╢п╣п╩п╣п╫п╦п╣
+я┘п╟я─п╟п╨я┌п╣я─п╦я│я┌п╦п╨ п©я─п╣п╢я│п╨п╟п╥я┐п╣п╪п╬я│я┌п╦ TCP sequence, я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦п╣ sunRPC,
+reverse-identd я│п╨п╟п╫п╦я─п╬п╡п╟п╫п╦п╣ п╦ п╢я─я┐пЁп╬п╣.
 
-%description -l uk
-Nmap - це утил╕та для досл╕дження мереж╕ та аудиту безпеки. Вона
-п╕дтриму╓ ping-сканування (визначення, як╕ хости працюють), багато
-методик сканування порт╕в (визначення, як╕ серв╕си надають хости), та
-"в╕дбитки пальц╕в" TCP/IP (╕дентиф╕кац╕я операц╕йно╖ системи хоста).
-Nmap також п╕дтриму╓ гнучке задання ц╕л╕ та порта, приховане
-сканування (decoy scanning), визначення характеристик передбачуваност╕
-TCP sequence, сканування sunRPC, reverse-identd сканування та ╕нше.
+%description -l uk.UTF-8
+Nmap - я├п╣ я┐я┌п╦п╩я√я┌п╟ п╢п╩я▐ п╢п╬я│п╩я√п╢п╤п╣п╫п╫я▐ п╪п╣я─п╣п╤я√ я┌п╟ п╟я┐п╢п╦я┌я┐ п╠п╣п╥п©п╣п╨п╦. п▓п╬п╫п╟
+п©я√п╢я┌я─п╦п╪я┐я■ ping-я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ (п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐, я▐п╨я√ я┘п╬я│я┌п╦ п©я─п╟я├я▌я▌я┌я▄), п╠п╟пЁп╟я┌п╬
+п╪п╣я┌п╬п╢п╦п╨ я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ п©п╬я─я┌я√п╡ (п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐, я▐п╨я√ я│п╣я─п╡я√я│п╦ п╫п╟п╢п╟я▌я┌я▄ я┘п╬я│я┌п╦), я┌п╟
+"п╡я√п╢п╠п╦я┌п╨п╦ п©п╟п╩я▄я├я√п╡" TCP/IP (я√п╢п╣п╫я┌п╦я└я√п╨п╟я├я√я▐ п╬п©п╣я─п╟я├я√п╧п╫п╬я≈ я│п╦я│я┌п╣п╪п╦ я┘п╬я│я┌п╟).
+Nmap я┌п╟п╨п╬п╤ п©я√п╢я┌я─п╦п╪я┐я■ пЁп╫я┐я┤п╨п╣ п╥п╟п╢п╟п╫п╫я▐ я├я√п╩я√ я┌п╟ п©п╬я─я┌п╟, п©я─п╦я┘п╬п╡п╟п╫п╣
+я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ (decoy scanning), п╡п╦п╥п╫п╟я┤п╣п╫п╫я▐ я┘п╟я─п╟п╨я┌п╣я─п╦я│я┌п╦п╨ п©п╣я─п╣п╢п╠п╟я┤я┐п╡п╟п╫п╬я│я┌я√
+TCP sequence, я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ sunRPC, reverse-identd я│п╨п╟п╫я┐п╡п╟п╫п╫я▐ я┌п╟ я√п╫я┬п╣.
 
 %package X11
 Summary:	GTK+ frontend for nmap
-Summary(pl):	Frontend GTK+ dla nmapa
-Summary(pt_BR):	Frontend GTK+ para o nmap
-Summary(ru):	GTK+ интерфейс для nmap
-Summary(uk):	GTK+ ╕нтерфейс для nmap
+Summary(pl.UTF-8):   Frontend GTK+ dla nmapa
+Summary(pt_BR.UTF-8):   Frontend GTK+ para o nmap
+Summary(ru.UTF-8):   GTK+ п╦п╫я┌п╣я─я└п╣п╧я│ п╢п╩я▐ nmap
+Summary(uk.UTF-8):   GTK+ я√п╫я┌п╣я─я└п╣п╧я│ п╢п╩я▐ nmap
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	nmap-frontend
@@ -99,19 +99,19 @@ Obsoletes:	nmap-frontend
 %description X11
 This package includes nmapfe, a GTK+ frontend for nmap.
 
-%description X11 -l pl
-Ten pakiet zawiera nmapfe, czyli frontend dla nmapa pisany z u©yciem
+%description X11 -l pl.UTF-8
+Ten pakiet zawiera nmapfe, czyli frontend dla nmapa pisany z uе╪yciem
 GTK+.
 
-%description X11 -l pt_BR
-Frontend grАfico para o nmap (nmapfe) escrito em GTK+. NЦo contИm toda
-a funcionalidade do nmap em si, mas И Зtil para usuАrios iniciantes.
+%description X11 -l pt_BR.UTF-8
+Frontend grц║fico para o nmap (nmapfe) escrito em GTK+. Nцёo contц╘m toda
+a funcionalidade do nmap em si, mas ц╘ ц╨til para usuц║rios iniciantes.
 
-%description X11 -l ru
-Этот пакет содержит nmapfe, GTK+ интерфейс для nmap.
+%description X11 -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ nmapfe, GTK+ п╦п╫я┌п╣я─я└п╣п╧я│ п╢п╩я▐ nmap.
 
-%description X11 -l uk
-Цей пакет м╕стить nmapfe, GTK+ ╕нтерфейс для nmap.
+%description X11 -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ nmapfe, GTK+ я√п╫я┌п╣я─я└п╣п╧я│ п╢п╩я▐ nmap.
 
 %prep
 %setup -q
