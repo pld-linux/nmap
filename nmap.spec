@@ -3,13 +3,13 @@
 %bcond_without	x	# don't build gtk-based nmap-X11
 #
 Summary:	Network exploration tool and security scanner
-Summary(es.UTF-8):   Herramienta de exploración de la rede y seguridad
-Summary(pl.UTF-8):   Program do badania i audytu sieci
-Summary(pt_BR.UTF-8):   Ferramenta de exploração da rede e segurança
-Summary(ru.UTF-8):   Утилита сканирования сети и аудита безопасности
-Summary(uk.UTF-8):   Утиліта сканування мережі та аудиту безпеки
-Summary(zh_CN.UTF-8):   [系统]强力端口扫描器
-Summary(zh_TW.UTF-8):   [.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
+Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
+Summary(pl.UTF-8):	Program do badania i audytu sieci
+Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
+Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
+Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
+Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
+Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
 Version:	4.20
 Release:	1
@@ -88,10 +88,10 @@ TCP sequence, сканування sunRPC, reverse-identd сканування �
 
 %package X11
 Summary:	GTK+ frontend for nmap
-Summary(pl.UTF-8):   Frontend GTK+ dla nmapa
-Summary(pt_BR.UTF-8):   Frontend GTK+ para o nmap
-Summary(ru.UTF-8):   GTK+ интерфейс для nmap
-Summary(uk.UTF-8):   GTK+ інтерфейс для nmap
+Summary(pl.UTF-8):	Frontend GTK+ dla nmapa
+Summary(pt_BR.UTF-8):	Frontend GTK+ para o nmap
+Summary(ru.UTF-8):	GTK+ интерфейс для nmap
+Summary(uk.UTF-8):	GTK+ інтерфейс для nmap
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	nmap-frontend
