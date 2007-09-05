@@ -12,7 +12,7 @@ Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
 Version:	4.20
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
