@@ -91,8 +91,8 @@ Summary:	Graphical frontend for nmap
 Summary(pl.UTF-8):	Graficzny frontend dla nmapa
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	nmap-X11
 Obsoletes:	nmap-frontend
-Obsoletes:	nmap-x
 
 %description zenmap
 This package includes zenmap, a graphical frontend for nmap.
@@ -106,11 +106,11 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
 %build
 find -type f -name 'configure.ac' | while read CFG; do
-    cd $(dirname "$CFG")
-    cp -f /usr/share/automake/config.sub .
-    %{__aclocal}
-    %{__autoconf}
-    cd -
+	cd $(dirname "$CFG")
+	cp -f /usr/share/automake/config.sub .
+	%{__aclocal}
+	%{__autoconf}
+	cd -
 done
 
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
