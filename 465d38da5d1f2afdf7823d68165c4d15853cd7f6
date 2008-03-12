@@ -1,0 +1,5 @@
+- added using DESTDIR,
+- moved data files from %{_libdir}/nmap to %{_datadir}/nmap,
+- fixed permissions on data files,
+- added gzipping docs,
+- cosmetics.
