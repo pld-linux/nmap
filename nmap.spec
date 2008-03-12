@@ -1,6 +1,9 @@
 #
-# Conditional build:
-%bcond_without	x	# don't build gtk-based nmap-X11
+# TODO:
+#	- use system lua51
+#	- use system libdnet
+#	- R: for zenmap
+#	- desktop file for zenmap
 #
 Summary:	Network exploration tool and security scanner
 Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
@@ -11,16 +14,13 @@ Summary(uk.UTF-8):	Утиліта сканування мережі та ауд�
 Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
-Version:	4.20
-Release:	2
+Version:	4.53
+Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	ea50419f99472200c4184a304e3831ea
-Source1:	%{name}.png
-Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-statistics.patch
-Patch2:		%{name}-am18.patch
+# Source0-md5:	bb203c47f3c234b61d3c4916da7eaa27
+Patch0:		%{name}-am18.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -86,66 +86,35 @@ Nmap також підтримує гнучке задання цілі та п�
 сканування (decoy scanning), визначення характеристик передбачуваності
 TCP sequence, сканування sunRPC, reverse-identd сканування та інше.
 
-%package X11
-Summary:	GTK+ frontend for nmap
-Summary(pl.UTF-8):	Frontend GTK+ dla nmapa
-Summary(pt_BR.UTF-8):	Frontend GTK+ para o nmap
-Summary(ru.UTF-8):	GTK+ интерфейс для nmap
-Summary(uk.UTF-8):	GTK+ інтерфейс для nmap
+%package zenmap
+Summary:	Graphical frontend for nmap
+Summary(pl.UTF-8):	Graficzny frontend dla nmapa
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	nmap-frontend
+Obsoletes:	nmap-x
 
-%description X11
-This package includes nmapfe, a GTK+ frontend for nmap.
+%description zenmap
+This package includes zenmap, a graphical frontend for nmap.
 
-%description X11 -l pl.UTF-8
-Ten pakiet zawiera nmapfe, czyli frontend dla nmapa pisany z użyciem
-GTK+.
-
-%description X11 -l pt_BR.UTF-8
-Frontend gráfico para o nmap (nmapfe) escrito em GTK+. Não contém toda
-a funcionalidade do nmap em si, mas é útil para usuários iniciantes.
-
-%description X11 -l ru.UTF-8
-Этот пакет содержит nmapfe, GTK+ интерфейс для nmap.
-
-%description X11 -l uk.UTF-8
-Цей пакет містить nmapfe, GTK+ інтерфейс для nmap.
+%description zenmap -l pl.UTF-8
+Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
 %prep
 %setup -q
 %patch0 -p1
-#patch1 -p1
-%patch2 -p1
 
 %build
-cp -f /usr/share/automake/config.sub .
-%{__aclocal}
-%{__autoconf}
-cd nbase
-cp -f /usr/share/automake/config.sub .
-# AC_C___ATTRIBUTE__
-tail -n +302 aclocal.m4 >> acinclude.m4
-%{__aclocal}
-%{__autoconf}
-cd ../libpcap
-cp -f /usr/share/automake/config.sub .
-# don't run aclocal - only local macros here!
-%{__autoconf}
-cd ../nmapfe
-cp -f /usr/share/automake/config.sub .
-%{!?with_x:echo 'AC_DEFUN([AM_PATH_GTK_2_0],[AC_DEFINE(MISSING_GTK)])' >> acinclude.m4}
-%{__aclocal}
-%{__autoconf}
-cd ../nsock/src
-cp -f /usr/share/automake/config.sub .
-cd ../..
-cp -f /usr/share/automake/config.sub libdnet-stripped/config
-CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
-%configure \
-	--enable-ipv6 \
-	%{!?with_x:--without-nmapfe}
+find -type f -name 'configure.ac' | while read CFG; do
+    cd $(dirname "$CFG")
+    cp -f /usr/share/automake/config.sub .
+    %{__aclocal}
+    %{__autoconf}
+    cd -
+done
+
+CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
+%configure
 
 %{__make}
 
@@ -154,35 +123,44 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	deskdir=%{_desktopdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
-%if %{with x}
-cd $RPM_BUILD_ROOT%{_bindir}
-rm -f xnmap
-ln -s nmapfe xnmap
-cd -
+install docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_pixmapsdir}
-%endif
+%py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.txt CHANGELOG
+%doc docs/README docs/*.txt CHANGELOG
 %attr(755,root,root) %{_bindir}/nmap
+%{_libdir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.1*
 
-%if %{with x}
-%files X11
+%files zenmap
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
-%{_mandir}/man1/nmapfe.1*
-%{_mandir}/man1/xnmap.1*
-%{_desktopdir}/nmapfe.desktop
-%{_pixmapsdir}/nmap.png
-%endif
+%attr(755,root,root) %{_bindir}/zenmap
+%dir %{py_sitescriptdir}/higwidgets
+%dir %{py_sitescriptdir}/zenmapCore
+%dir %{py_sitescriptdir}/zenmapGUI
+%{py_sitescriptdir}/higwidgets/*.py[co]
+%{py_sitescriptdir}/zenmapCore/*.py[co]
+%{py_sitescriptdir}/zenmapGUI/*.py[co]
+%{py_sitescriptdir}/zenmap-*-info
+%dir %{_datadir}/zenmap
+%dir %{_datadir}/zenmap/locale
+%lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
+%{_datadir}/zenmap/config
+%{_datadir}/zenmap/docs
+%{_datadir}/zenmap/misc
+%{_mandir}/man1/zenmap.1*
+%{_iconsdir}/*.ico
+%{_pixmapsdir}/*.png
+%{_pixmapsdir}/*.svg
