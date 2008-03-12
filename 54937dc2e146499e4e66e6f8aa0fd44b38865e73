@@ -1,0 +1,4 @@
+- nmapfe, xnmap moved to %{_bindir}
+- nmapfe.desktop patched and moved to %{_desktopdir}
+- simplified %install
+- Release 2
