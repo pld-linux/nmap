@@ -24,11 +24,12 @@ Patch0:		%{name}-am18.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_x:BuildRequires:	gtk+2-devel >= 2.0}
+BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
-%{?with_x:BuildRequires:	pkgconfig}
+BuildRequires:	python-devel
+BuildRequires:	rpm-pythonprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
