@@ -2,7 +2,6 @@
 # TODO:
 #	- use system lua51
 #	- use system libdnet
-#	- R: for zenmap
 #	- desktop file for zenmap
 #
 Summary:	Network exploration tool and security scanner
@@ -16,7 +15,7 @@ Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
 Version:	4.53
 Release:	1
-License:	GPL
+License:	GPL v2
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	bb203c47f3c234b61d3c4916da7eaa27
@@ -26,10 +25,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
-BuildRequires:	python-devel
+BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	rpm-pythonprov
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -92,6 +93,8 @@ Summary:	Graphical frontend for nmap
 Summary(pl.UTF-8):	Graficzny frontend dla nmapa
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
+Requires:	python-pygtk-gtk >= 2:2.6
+Requires:	python-sqlite >= 2.0
 Obsoletes:	nmap-X11
 Obsoletes:	nmap-frontend
 
@@ -105,13 +108,19 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %setup -q
 %patch0 -p1
 
+# should be libtool with added "libtool: @LIBTOOL_DEPS@" rule in fact
+# (but the latter would fail due to bug in libtool 2.2)
+sed -i -e 's,@LIBTOOL_DEPS@,./libtool,' nselib-bin/Makefile.in
+
 %build
-find -type f -name 'configure.ac' | while read CFG; do
+cp -f /usr/share/automake/config.sub .
+ln -s config/acinclude.m4 libdnet-stripped
+%{__libtoolize}
+find -type f -name configure.ac -o -name configure.in | while read CFG; do
 	cd $(dirname "$CFG")
-	cp -f /usr/share/automake/config.sub .
 	%{__aclocal}
 	%{__autoconf}
-	cd -
+	cd "$OLDPWD"
 done
 
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
@@ -137,7 +146,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc docs/README docs/*.txt CHANGELOG
+# note: COPYING contains important notes and clarifications
+%doc docs/README docs/*.txt CHANGELOG COPYING
 %attr(755,root,root) %{_bindir}/nmap
 %{_libdir}/nmap
 %{_datadir}/nmap
@@ -154,7 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitescriptdir}/higwidgets/*.py[co]
 %{py_sitescriptdir}/zenmapCore/*.py[co]
 %{py_sitescriptdir}/zenmapGUI/*.py[co]
-%{py_sitescriptdir}/zenmap-*-info
+%{py_sitescriptdir}/zenmap-*.egg-info
 %dir %{_datadir}/zenmap
 %dir %{_datadir}/zenmap/locale
 %lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
