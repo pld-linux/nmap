@@ -13,12 +13,12 @@ Summary(uk.UTF-8):	Утиліта сканування мережі та ауд�
 Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
-Version:	4.53
+Version:	4.60
 Release:	1
 License:	GPL v2
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	bb203c47f3c234b61d3c4916da7eaa27
+# Source0-md5:	6201551054050c11182fd6dd91682cb1
 Patch0:		%{name}-am18.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
@@ -140,6 +140,9 @@ install docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
+
+# remove unneeded files
+rm -f $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
 
 %clean
 rm -rf $RPM_BUILD_ROOT
