@@ -1,6 +1,5 @@
 #
 # TODO:
-#	- use system lua51
 #	- use system libdnet
 #	- desktop file for zenmap
 #
@@ -20,12 +19,14 @@ Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	6201551054050c11182fd6dd91682cb1
 Patch0:		%{name}-am18.patch
+Patch1:		%{name}-system-lua.patch
 URL:		http://www.insecure.org/nmap/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
+BuildRequires:	lua51-devel >= 5.1
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.5
@@ -107,6 +108,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # should be libtool with added "libtool: @LIBTOOL_DEPS@" rule in fact
 # (but the latter would fail due to bug in libtool 2.2)
@@ -124,7 +126,10 @@ find -type f -name configure.ac -o -name configure.in | while read CFG; do
 done
 
 CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
-%configure
+CPPFLAGS="-I/usr/include/lua51"
+%configure \
+	LIBLUA_LIBS="-llua51" \
+	--with-liblua
 
 %{__make}
 
