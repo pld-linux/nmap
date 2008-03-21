@@ -1,0 +1,30 @@
+--- nmap-4.60/configure.ac.orig	2008-01-17 08:22:03.000000000 +0100
++++ nmap-4.60/configure.ac	2008-03-21 17:40:50.652654146 +0100
+@@ -471,6 +471,7 @@
+ AC_HELP_STRING([--without-liblua], [Compile without lua (this will exclude all of NSE from compilation)]),
+ [  case "$with_liblua" in
+   yes)
++    have_lua=yes
+   ;;
+   included)
+     CXXFLAGS="-I$LIBLUADIR $CXXFLAGS"
+--- nmap-4.60/nselib-bin/Makefile.in.orig	2008-03-21 17:42:43.231078000 +0100
++++ nmap-4.60/nselib-bin/Makefile.in	2008-03-21 17:59:18.723796170 +0100
+@@ -4,7 +4,7 @@
+ CXX = @CXX@
+ CCOPT = 
+ DBGFLAGS = 
+-
++CPPFLAGS = @CPPFLAGS@
+ 
+ SHTOOL = ../shtool
+ INSTALL = $(SHTOOL) install 
+@@ -15,7 +15,7 @@
+ all: bit.so
+ 
+ bit.so: bit.c @LIBTOOL_DEPS@
+-	$(LIBTOOL) $(LTFLAGS) --mode=compile $(CC) @LUAINCLUDE@ $(CFLAGS) -c bit.c
++	$(LIBTOOL) $(LTFLAGS) --mode=compile $(CC) @LUAINCLUDE@ $(CPPFLAGS) $(CFLAGS) -c bit.c
+ 	$(LIBTOOL) $(LTFLAGS) --mode=link $(CC) -avoid-version -module -rpath /usr/local/lib -o bit.la bit.lo
+ 	mv .libs/bit.so bit.so
+ 
