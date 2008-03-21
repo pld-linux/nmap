@@ -1,0 +1,10 @@
+--- nmap-4.60/configure.ac.orig	2008-03-21 18:18:08.912209000 +0100
++++ nmap-4.60/configure.ac	2008-03-21 19:49:46.741509563 +0100
+@@ -423,6 +423,7 @@
+ AC_HELP_STRING([--with-libdnet=DIR], [Use an existing (compiled) dnet lib from DIR/include and DIR/lib.]),
+ [  case "$with_libdnet" in
+   yes)
++    have_dnet=yes
+     ;;
+   included)
+     ;;
