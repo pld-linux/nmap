@@ -1,6 +1,5 @@
 #
 # TODO:
-#	- use system libdnet
 #	- desktop file for zenmap
 #
 Summary:	Network exploration tool and security scanner
@@ -14,15 +13,17 @@ Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
 Version:	4.60
 Release:	1
-License:	GPL v2
+License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	6201551054050c11182fd6dd91682cb1
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
-URL:		http://www.insecure.org/nmap/index.html
-BuildRequires:	autoconf
+Patch2:		%{name}-system-dnet.patch
+URL:		http://nmap.org/
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
+BuildRequires:	libdnet-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
@@ -31,6 +32,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.5
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.167
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -109,6 +111,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 # should be libtool with added "libtool: @LIBTOOL_DEPS@" rule in fact
 # (but the latter would fail due to bug in libtool 2.2)
@@ -125,10 +128,11 @@ find -type f -name configure.ac -o -name configure.in | while read CFG; do
 	cd "$OLDPWD"
 done
 
-CXXFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions" \
+CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua51"
 %configure \
 	LIBLUA_LIBS="-llua51" \
+	--with-libdnet \
 	--with-liblua
 
 %{__make}
