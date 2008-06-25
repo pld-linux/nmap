@@ -11,12 +11,12 @@ Summary(uk.UTF-8):	Утиліта сканування мережі та ауд�
 Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
-Version:	4.60
+Version:	4.65
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	6201551054050c11182fd6dd91682cb1
+# Source0-md5:	55a22859d59f76962829df18c850ef8c
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -118,7 +118,6 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 sed -i -e 's,@LIBTOOL_DEPS@,./libtool,' nselib-bin/Makefile.in
 
 %build
-cp -f /usr/share/automake/config.sub .
 ln -s config/acinclude.m4 libdnet-stripped
 %{__libtoolize}
 find -type f -name configure.ac -o -name configure.in | while read CFG; do
@@ -127,6 +126,7 @@ find -type f -name configure.ac -o -name configure.in | while read CFG; do
 	%{__autoconf}
 	cd "$OLDPWD"
 done
+cp -f /usr/share/automake/config.sub .
 
 CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua51"
