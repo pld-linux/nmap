@@ -11,12 +11,12 @@ Summary(uk.UTF-8):	Утиліта сканування мережі та ауд�
 Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
-Version:	4.65
+Version:	4.68
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
-Source0:	http://www.insecure.org/nmap/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	55a22859d59f76962829df18c850ef8c
+Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
+# Source0-md5:	c363d32a00c697d15996fced22072b6c
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -183,7 +183,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/zenmap/config
 %{_datadir}/zenmap/docs
 %{_datadir}/zenmap/misc
+%{_datadir}/zenmap/pixmaps
 %{_mandir}/man1/zenmap.1*
-%{_iconsdir}/*.ico
-%{_pixmapsdir}/*.png
-%{_pixmapsdir}/*.svg
