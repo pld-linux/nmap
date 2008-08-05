@@ -30,7 +30,7 @@ BuildRequires:	libtool
 BuildRequires:	lua51-devel >= 5.1
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
-BuildRequires:	python-devel >= 1:2.5
+BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.167
 BuildRequires:	sed >= 4.0
@@ -176,7 +176,9 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitescriptdir}/higwidgets/*.py[co]
 %{py_sitescriptdir}/zenmapCore/*.py[co]
 %{py_sitescriptdir}/zenmapGUI/*.py[co]
+%if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/zenmap-*.egg-info
+%endif
 %dir %{_datadir}/zenmap
 %dir %{_datadir}/zenmap/locale
 %lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
