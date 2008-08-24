@@ -98,6 +98,7 @@ Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-pygtk-gtk >= 2:2.6
 Requires:	python-sqlite >= 2.0
+Provides:	nmap-X11
 Obsoletes:	nmap-X11
 Obsoletes:	nmap-frontend
 
