@@ -198,4 +198,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/zenmap/misc
 %{_datadir}/zenmap/pixmaps
 %{_datadir}/zenmap/su-to-zenmap.sh
+%{_desktopdir}/zenmap-root.desktop
+%{_desktopdir}/zenmap.desktop
 %{_mandir}/man1/zenmap.1*
