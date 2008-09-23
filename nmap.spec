@@ -11,12 +11,12 @@ Summary(uk.UTF-8):	Утиліта сканування мережі та ауд�
 Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
-Version:	4.68
-Release:	1
+Version:	4.76
+Release:	0.1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	c363d32a00c697d15996fced22072b6c
+# Source0-md5:	278dd2e849cc3dbb947df961a1aaffd0
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -96,6 +96,7 @@ Summary:	Graphical frontend for nmap
 Summary(pl.UTF-8):	Graficzny frontend dla nmapa
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
+Requires:	bash
 Requires:	python-pygtk-gtk >= 2:2.6
 Requires:	python-sqlite >= 2.0
 Provides:	nmap-X11
@@ -116,7 +117,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
 # should be libtool with added "libtool: @LIBTOOL_DEPS@" rule in fact
 # (but the latter would fail due to bug in libtool 2.2)
-sed -i -e 's,@LIBTOOL_DEPS@,./libtool,' nselib-bin/Makefile.in
+# sed -i -e 's,@LIBTOOL_DEPS@,./libtool,' nselib-bin/Makefile.in
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
@@ -162,7 +163,6 @@ rm -rf $RPM_BUILD_ROOT
 # note: COPYING contains important notes and clarifications
 %doc docs/README docs/*.txt CHANGELOG COPYING
 %attr(755,root,root) %{_bindir}/nmap
-%{_libdir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.1*
 
@@ -171,12 +171,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
 %attr(755,root,root) %{_bindir}/zenmap
-%dir %{py_sitescriptdir}/higwidgets
+%dir %{py_sitescriptdir}/radialnet
+%dir %{py_sitescriptdir}/radialnet/bestwidgets
+%dir %{py_sitescriptdir}/radialnet/core
+%dir %{py_sitescriptdir}/radialnet/gui
+%dir %{py_sitescriptdir}/radialnet/util
 %dir %{py_sitescriptdir}/zenmapCore
 %dir %{py_sitescriptdir}/zenmapGUI
-%{py_sitescriptdir}/higwidgets/*.py[co]
+%dir %{py_sitescriptdir}/zenmapGUI/higwidgets
+%{py_sitescriptdir}/radialnet/*.py[co]
+%{py_sitescriptdir}/radialnet/bestwidgets/*.py[co]
+%{py_sitescriptdir}/radialnet/core/*.py[co]
+%{py_sitescriptdir}/radialnet/gui/*.py[co]
+%{py_sitescriptdir}/radialnet/util/*.py[co]
 %{py_sitescriptdir}/zenmapCore/*.py[co]
 %{py_sitescriptdir}/zenmapGUI/*.py[co]
+%{py_sitescriptdir}/zenmapGUI/higwidgets/*.py[co]
 %if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/zenmap-*.egg-info
 %endif
@@ -187,4 +197,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/zenmap/docs
 %{_datadir}/zenmap/misc
 %{_datadir}/zenmap/pixmaps
+%{_datadir}/zenmap/su-to-zenmap.sh
 %{_mandir}/man1/zenmap.1*
