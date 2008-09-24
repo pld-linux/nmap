@@ -1,26 +1,43 @@
-diff -burN nmap-3.75.orig/nmapfe.desktop nmap-3.75/nmapfe.desktop
---- nmap-3.75.orig/nmapfe.desktop	2004-10-18 23:03:47.168361192 +0200
-+++ nmap-3.75/nmapfe.desktop	2004-10-18 23:05:39.605268184 +0200
-@@ -1,12 +1,14 @@
+diff -Naur nmap-4.76.orig/zenmap/install_scripts/unix/zenmap.desktop nmap-4.76/zenmap/install_scripts/unix/zenmap.desktop
+--- nmap-4.76.orig/zenmap/install_scripts/unix/zenmap.desktop	2008-09-24 10:54:49.000000000 +0200
++++ nmap-4.76/zenmap/install_scripts/unix/zenmap.desktop	2008-09-24 10:58:31.000000000 +0200
+@@ -1,5 +1,4 @@
  [Desktop Entry]
- Encoding=UTF-8
--Name=NmapFE
--GenericName=Security Scanner
--Comment=GUI frontend for Nmap security/port scanner
--Version=1.0
--TryExec=nmapfe
-+Name=Nmap
-+Comment=Gtk+ frontend to nmap
+-Encoding=UTF-8
+ Name=Zenmap
+ GenericName=GUI Port Scanner
+ TryExec=zenmap
+@@ -7,5 +6,10 @@
+ Terminal=false
+ Icon=zenmap
+ Type=Application
+-Categories=Application;Network;
++Categories=GTK;Network;
+ Comment=A cross-platform GUI for the Nmap Security Scanner.
 +Comment[es]=Herramienta de exploración de la rede y seguridad
 +Comment[pl]=Frontend gtk+ do nmap
 +Comment[pt]=Ferramenta de exploração da rede e segurança
 +Comment[ru]=Утилита сканирования сети и аудита безопасности
 +Comment[uk]=Утиліта сканування мережі та аудиту безпеки
- Exec=nmapfe
--Icon=icon-network
-+Icon=nmap.png
+diff -Naur nmap-4.76.orig/zenmap/install_scripts/unix/zenmap-root.desktop nmap-4.76/zenmap/install_scripts/unix/zenmap-root.desktop
+--- nmap-4.76.orig/zenmap/install_scripts/unix/zenmap-root.desktop	2008-07-25 22:23:23.000000000 +0200
++++ nmap-4.76/zenmap/install_scripts/unix/zenmap-root.desktop	2008-09-24 10:58:22.000000000 +0200
+@@ -1,11 +1,15 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+-Name=Zenmap (as root)
++Name=Zenmap as root
+ GenericName=GUI Port Scanner
+ TryExec=su-to-zenmap.sh
+ Exec=su-to-zenmap.sh %F
  Terminal=false
+ Icon=zenmap
  Type=Application
--Categories=Application;Network;System;Security;GTK
-\ Brak znaku nowej linii na ko�cu pliku
+-Categories=Application;Network;
 +Categories=GTK;Network;
+ Comment=A cross-platform GUI for the Nmap Security Scanner.
++Comment[es]=Herramienta de exploración de la rede y seguridad
++Comment[pl]=Frontend gtk+ do nmap
++Comment[pt]=Ferramenta de exploração da rede e segurança
++Comment[ru]=Утилита сканирования сети и аудита безопасности
++Comment[uk]=Утиліта сканування мережі та аудиту безпеки
