@@ -1,7 +1,4 @@
 #
-# TODO:
-#	- desktop file for zenmap
-#
 Summary:	Network exploration tool and security scanner
 Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
 Summary(pl.UTF-8):	Program do badania i audytu sieci
@@ -12,7 +9,7 @@ Summary(zh_CN.UTF-8):	[系统]强力端口扫描器
 Summary(zh_TW.UTF-8):	[.)B系.$)B統].)B強力.$)B端.)B口.$)B掃.)B描.$)B器
 Name:		nmap
 Version:	4.76
-Release:	0.1
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
