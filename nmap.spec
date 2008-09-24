@@ -20,6 +20,7 @@ Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
+Patch3:		%{name}-desktop.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -114,6 +115,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 # should be libtool with added "libtool: @LIBTOOL_DEPS@" rule in fact
 # (but the latter would fail due to bug in libtool 2.2)
