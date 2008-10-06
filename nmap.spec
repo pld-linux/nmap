@@ -112,10 +112,6 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %patch2 -p1
 %patch3 -p1
 
-# should be libtool with added "libtool: @LIBTOOL_DEPS@" rule in fact
-# (but the latter would fail due to bug in libtool 2.2)
-# sed -i -e 's,@LIBTOOL_DEPS@,./libtool,' nselib-bin/Makefile.in
-
 %build
 ln -s config/acinclude.m4 libdnet-stripped
 %{__libtoolize}
