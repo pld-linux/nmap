@@ -180,7 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitescriptdir}/zenmapCore/*.py[co]
 %{py_sitescriptdir}/zenmapGUI/*.py[co]
 %{py_sitescriptdir}/zenmapGUI/higwidgets/*.py[co]
-%if "%{pld_release}" == "ac"
+%if "%{pld_release}" != "ac"
 %{py_sitescriptdir}/zenmap-*.egg-info
 %endif
 %dir %{_datadir}/zenmap
