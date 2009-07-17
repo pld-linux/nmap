@@ -1,4 +1,6 @@
 #
+%bcond_with	system_dnet
+#
 Summary:	Network exploration tool and security scanner
 Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
 Summary(pl.UTF-8):	Program do badania i audytu sieci
@@ -6,12 +8,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	4.76
-Release:	2
+Version:	5.00
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	278dd2e849cc3dbb947df961a1aaffd0
+# Source0-md5:	32d27de32166c02d670bb4a086185886
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -19,7 +21,7 @@ Patch3:		%{name}-desktop.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	libdnet-devel
+%{?with_system_dnet:BuildRequires:	libdnet-devel}
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
@@ -30,6 +32,7 @@ BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.167
 BuildRequires:	sed >= 4.0
+Requires:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -127,7 +130,7 @@ CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua51"
 %configure \
 	LIBLUA_LIBS="-llua51" \
-	--with-libdnet \
+	--with-libdnet%{!?with_system_dnet:=included} \
 	--with-liblua
 
 %{__make}
@@ -145,6 +148,8 @@ install docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
 
+ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT/%{_datadir}/ncat/ca-bundle.crt
+
 # remove unneeded files
 rm -f $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
 
@@ -155,8 +160,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 # note: COPYING contains important notes and clarifications
 %doc docs/README docs/*.txt CHANGELOG COPYING
+%attr(755,root,root) %{_bindir}/ncat
+%attr(755,root,root) %{_bindir}/ndiff
 %attr(755,root,root) %{_bindir}/nmap
 %{_datadir}/nmap
+%{_datadir}/ncat
+%{_mandir}/man1/ncat.1*
+%{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
 
 %files zenmap
@@ -184,11 +194,14 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitescriptdir}/zenmap-*.egg-info
 %endif
 %dir %{_datadir}/zenmap
-%dir %{_datadir}/zenmap/locale
-%lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
 %{_datadir}/zenmap/config
 %{_datadir}/zenmap/docs
 %{_datadir}/zenmap/misc
+%dir %{_datadir}/zenmap/locale
+%lang(de) %{_datadir}/zenmap/locale/de
+%lang(fr) %{_datadir}/zenmap/locale/fr
+%lang(hr) %{_datadir}/zenmap/locale/hr
+%lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
 %{_datadir}/zenmap/pixmaps
 %{_datadir}/zenmap/su-to-zenmap.sh
 %{_desktopdir}/zenmap-root.desktop
