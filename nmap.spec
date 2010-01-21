@@ -8,12 +8,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	5.00
+Version:	5.20
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	32d27de32166c02d670bb4a086185886
+# Source0-md5:	07e74592beaea0b5946a6cf06f9157de
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -168,6 +168,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/ncat.1*
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
+%lang(de) %{_mandir}/de/man1/nmap.1*
+%lang(es) %{_mandir}/es/man1/nmap.1*
+%lang(fr) %{_mandir}/fr/man1/nmap.1*
+%lang(hr) %{_mandir}/hr/man1/nmap.1*
+%lang(hu) %{_mandir}/hu/man1/nmap.1*
+%lang(it) %{_mandir}/it/man1/nmap.1*
+%lang(jp) %{_mandir}/jp/man1/nmap.1*
+%lang(pl) %{_mandir}/pl/man1/nmap.1*
+%lang(pt_BR) %{_mandir}/pt_BR/man1/nmap.1*
+%lang(pt_PT) %{_mandir}/pt_PT/man1/nmap.1*
+%lang(ro) %{_mandir}/ro/man1/nmap.1*
+%lang(ru) %{_mandir}/ru/man1/nmap.1*
+%lang(sk) %{_mandir}/sk/man1/nmap.1*
+%lang(zh) %{_mandir}/zh/man1/nmap.1*
 
 %files zenmap
 %defattr(644,root,root,755)
@@ -202,6 +216,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/zenmap/locale/fr
 %lang(hr) %{_datadir}/zenmap/locale/hr
 %lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
+%lang(ru) %{_datadir}/zenmap/locale/ru
 %{_datadir}/zenmap/pixmaps
 %{_datadir}/zenmap/su-to-zenmap.sh
 %{_desktopdir}/zenmap-root.desktop
