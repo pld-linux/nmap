@@ -8,12 +8,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	5.20
+Version:	5.21
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	07e74592beaea0b5946a6cf06f9157de
+# Source0-md5:	f77fa51d89ab27d35e5cd87bb086b858
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
