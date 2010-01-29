@@ -9,7 +9,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	5.21
-Release:	1
+Release:	2
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
@@ -154,6 +154,11 @@ ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT/%{_datadir}/ncat/ca-bundle
 # remove unneeded files
 rm -f $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
 
+# fix locale names
+mv $RPM_BUILD_ROOT%{_mandir}/{jp,ja}
+mv $RPM_BUILD_ROOT%{_mandir}/pt{_PT,}
+mv $RPM_BUILD_ROOT%{_mandir}/zh{,_CN}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -175,14 +180,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(hr) %{_mandir}/hr/man1/nmap.1*
 %lang(hu) %{_mandir}/hu/man1/nmap.1*
 %lang(it) %{_mandir}/it/man1/nmap.1*
-%lang(jp) %{_mandir}/jp/man1/nmap.1*
+%lang(ja) %{_mandir}/ja/man1/nmap.1*
 %lang(pl) %{_mandir}/pl/man1/nmap.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/nmap.1*
-%lang(pt_PT) %{_mandir}/pt_PT/man1/nmap.1*
+%lang(pt) %{_mandir}/pt/man1/nmap.1*
 %lang(ro) %{_mandir}/ro/man1/nmap.1*
 %lang(ru) %{_mandir}/ru/man1/nmap.1*
 %lang(sk) %{_mandir}/sk/man1/nmap.1*
-%lang(zh) %{_mandir}/zh/man1/nmap.1*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/nmap.1*
 
 %files zenmap
 %defattr(644,root,root,755)
