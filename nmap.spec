@@ -11,7 +11,7 @@ Name:		nmap
 Version:	5.21
 Release:	4
 License:	GPL v2 clarified, with OpenSSL exception
-Group:		Networking
+Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	f77fa51d89ab27d35e5cd87bb086b858
 Patch0:		%{name}-am18.patch
