@@ -8,12 +8,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	5.21
-Release:	6
+Version:	5.50
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	f77fa51d89ab27d35e5cd87bb086b858
+# Source0-md5:	a4df96e52cb52a1bbe76caace5f21388
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -169,11 +169,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ncat
 %attr(755,root,root) %{_bindir}/ndiff
 %attr(755,root,root) %{_bindir}/nmap
+%attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
 %{_datadir}/ncat
 %{_mandir}/man1/ncat.1*
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
+%{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
 %lang(es) %{_mandir}/es/man1/nmap.1*
 %lang(fr) %{_mandir}/fr/man1/nmap.1*
