@@ -1,5 +1,6 @@
 #
-%bcond_with	system_dnet
+# Conditional build:
+%bcond_with	system_dnet	# use system libdnet instead of local modified version
 #
 Summary:	Network exploration tool and security scanner
 Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
