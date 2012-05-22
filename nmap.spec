@@ -9,12 +9,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	5.51.5
-Release:	2
+Version:	6.00
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	5dab59a65d2b956ef49f305d198f2fcd
+# Source0-md5:	e365cdada811c57e172b24b62746ab7d
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -33,6 +33,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.167
+BuildRequires:	subversion-devel
 BuildRequires:	sed >= 4.0
 Requires:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -119,6 +120,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
+ln -s ../acinclude.m4 ncat
 %{__libtoolize}
 find -type f -name configure.ac -o -name configure.in | while read CFG; do
 	cd $(dirname "$CFG")
@@ -135,7 +137,7 @@ CPPFLAGS="-I/usr/include/lua51"
 	--with-libdnet%{!?with_system_dnet:=included} \
 	--with-liblua
 
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -170,12 +172,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ncat
 %attr(755,root,root) %{_bindir}/ndiff
 %attr(755,root,root) %{_bindir}/nmap
+%attr(755,root,root) %{_bindir}/nmap-update
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
 %{_datadir}/ncat
 %{_mandir}/man1/ncat.1*
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
+%{_mandir}/man1/nmap-update.1*
 %{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
 %lang(es) %{_mandir}/es/man1/nmap.1*

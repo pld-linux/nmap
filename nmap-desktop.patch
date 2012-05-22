@@ -11,7 +11,7 @@
  Terminal=false
  Icon=zenmap
  Type=Application
--Categories=Application;Network;Security
+-Categories=Application;Network;Security;
 +Categories=GTK;Network;Security
  Comment=A cross-platform GUI for the Nmap Security Scanner.
 +Comment[es]=Herramienta de exploración de la rede y seguridad
@@ -34,11 +34,12 @@
  Terminal=false
  Icon=zenmap
  Type=Application
--Categories=Application;Network;Security
+ Categories=Application;Network;Security;
+-Comment=A cross-platform GUI for the Nmap Security Scanner.
 +Categories=GTK;Network;Security
- Comment=A cross-platform GUI for the Nmap Security Scanner.
 +Comment[es]=Herramienta de exploración de la rede y seguridad
 +Comment[pl]=Graficzny interfejs do skanera bezpieczeństwa Nmap
 +Comment[pt]=Ferramenta de exploração da rede e segurança
 +Comment[ru]=Утилита сканирования сети и аудита безопасности
 +Comment[uk]=Утиліта сканування мережі та аудиту безпеки
+
