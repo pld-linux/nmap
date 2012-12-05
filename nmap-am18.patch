@@ -1,5 +1,5 @@
---- nmap-3.50/nbase/configlocal.m4.orig	2002-09-09 00:56:01.000000000 +0200
-+++ nmap-3.50/nbase/configlocal.m4	2004-01-22 21:37:57.178324264 +0100
+--- nmap-3.50/nbase/acinclude.m4.orig	2002-09-09 00:56:01.000000000 +0200
++++ nmap-3.50/nbase/acinclude.m4	2004-01-22 21:37:57.178324264 +0100
 @@ -11,7 +11,7 @@
  dnl can't use getaddrinfo() because we can't get strings
  dnl describing the error codes.
