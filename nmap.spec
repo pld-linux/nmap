@@ -9,12 +9,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	6.01
+Version:	6.25
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	a1a71940f238abb835dbf3ee7412bcea
+# Source0-md5:	fcc80f94ff3adcb11eedf91092ea6f5e
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -27,7 +27,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	lua51-devel >= 5.1
+BuildRequires:	lua52-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
@@ -131,9 +131,9 @@ done
 cp -f /usr/share/automake/config.sub .
 
 CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
-CPPFLAGS="-I/usr/include/lua51"
+CPPFLAGS="-I/usr/include/lua52"
 %configure \
-	LIBLUA_LIBS="-llua51" \
+	LIBLUA_LIBS="-llua52" \
 	--with-libdnet%{!?with_system_dnet:=included} \
 	--with-liblua
 
