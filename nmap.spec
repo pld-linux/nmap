@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	6.25
-Release:	1
+Release:	2
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
