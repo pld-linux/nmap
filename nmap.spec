@@ -27,7 +27,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	lua52-devel
+BuildRequires:	lua52-devel >= 5.2
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
@@ -131,9 +131,9 @@ done
 cp -f /usr/share/automake/config.sub .
 
 CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
-CPPFLAGS="-I/usr/include/lua52"
+CPPFLAGS="-I/usr/include/lua5.2"
 %configure \
-	LIBLUA_LIBS="-llua52" \
+	LIBLUA_LIBS="-llua5.2" \
 	--with-libdnet%{!?with_system_dnet:=included} \
 	--with-liblua
 
