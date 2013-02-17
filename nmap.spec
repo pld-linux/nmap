@@ -1,6 +1,8 @@
 #
 # Conditional build:
 %bcond_with	system_dnet	# use system libdnet instead of local modified version
+%bcond_without	svn
+%bcond_without	lua
 #
 Summary:	Network exploration tool and security scanner
 Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
@@ -27,14 +29,14 @@ BuildRequires:	gettext-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	lua52-devel >= 5.2
+%{?with_lua:BuildRequires:	lua52-devel >= 5.2}
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.167
 BuildRequires:	sed >= 4.0
-BuildRequires:	subversion-devel
+%{?with_svn:BuildRequires:	subversion-devel}
 Requires:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -133,9 +135,10 @@ cp -f /usr/share/automake/config.sub .
 CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua5.2"
 %configure \
-	LIBLUA_LIBS="-llua5.2" \
-	--with-libdnet%{!?with_system_dnet:=included} \
-	--with-liblua
+	%{?with_lua:LIBLUA_LIBS="-llua5.2"} \
+	--with%{!?with_lua:out}-liblua \
+	--with%{!?with_svn:out}-subversion \
+	--with-libdnet%{!?with_system_dnet:=included}
 
 %{__make} -j1
 
@@ -172,14 +175,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ncat
 %attr(755,root,root) %{_bindir}/ndiff
 %attr(755,root,root) %{_bindir}/nmap
-%attr(755,root,root) %{_bindir}/nmap-update
+%{?with_svn:%attr(755,root,root) %{_bindir}/nmap-update}
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
 %{_datadir}/ncat
 %{_mandir}/man1/ncat.1*
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
-%{_mandir}/man1/nmap-update.1*
+%{?with_svn:%{_mandir}/man1/nmap-update.1*}
 %{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
 %lang(es) %{_mandir}/es/man1/nmap.1*
