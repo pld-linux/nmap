@@ -21,6 +21,7 @@ Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
 Patch3:		%{name}-desktop.patch
+Patch4:		%{name}-nolua.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -119,6 +120,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
