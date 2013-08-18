@@ -1,9 +1,11 @@
-#
+# TODO
+# - fill proper BRs, configure opts, currently th-builders build more featured build than carme for example
+
 # Conditional build:
 %bcond_with	system_dnet	# use system libdnet instead of local modified version
 %bcond_without	svn
 %bcond_without	lua
-#
+
 Summary:	Network exploration tool and security scanner
 Summary(es.UTF-8):	Herramienta de exploración de la rede y seguridad
 Summary(pl.UTF-8):	Program do badania i audytu sieci
@@ -35,13 +37,13 @@ BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.167
+BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
 %{?with_svn:BuildRequires:	subversion-devel}
 Requires:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define     _noautoreq  'java\\(ClassDataVersion\\)'
+%define		_noautoreq_java ClassDataVersion
 
 %description
 Nmap is a utility for network exploration or security auditing. It
