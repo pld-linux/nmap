@@ -13,17 +13,16 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	6.25
-Release:	5
+Version:	6.40
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	fcc80f94ff3adcb11eedf91092ea6f5e
+# Source0-md5:	c0e2f3370e1fb97fb53185b15aa22aff
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
 Patch3:		%{name}-desktop.patch
-Patch4:		%{name}-nolua.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -124,7 +123,6 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
@@ -138,7 +136,7 @@ find -type f -name configure.ac -o -name configure.in | while read CFG; do
 done
 cp -f /usr/share/automake/config.sub .
 
-CXXFLAGS="%{rpmcxxflags} -fno-rtti -fno-exceptions"
+CXXFLAGS="%{rpmcxxflags} -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua5.2"
 %configure \
 	%{?with_lua:LIBLUA_LIBS="-llua5.2"} \
@@ -167,7 +165,6 @@ ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT/%{_datadir}/ncat/ca-bundle
 rm -f $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
 
 # fix locale names
-mv $RPM_BUILD_ROOT%{_mandir}/{jp,ja}
 mv $RPM_BUILD_ROOT%{_mandir}/pt{_PT,}
 mv $RPM_BUILD_ROOT%{_mandir}/zh{,_CN}
 
@@ -237,6 +234,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_datadir}/zenmap/locale/de
 %lang(fr) %{_datadir}/zenmap/locale/fr
 %lang(hr) %{_datadir}/zenmap/locale/hr
+%lang(it) %{_datadir}/zenmap/locale/it
+%lang(pl) %{_datadir}/zenmap/locale/pl
 %lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
 %lang(ru) %{_datadir}/zenmap/locale/ru
 %{_datadir}/zenmap/pixmaps
