@@ -14,11 +14,13 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	6.40
-Release:	1
+Release:	2
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	c0e2f3370e1fb97fb53185b15aa22aff
+Source1:	https://svn.nmap.org/nmap/scripts/ssl-heartbleed.nse
+# Source1-md5:	f727de80f9a9ee307394e5b29b991c04
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -158,6 +160,10 @@ install docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
+
+# drop after upgrade to version that provides ssl-heartbleed.nse
+[ -f $RPM_BUILD_ROOT%{_datadir}/nmap/scripts/ssl-heartbleed.nse ] && exit 1
+install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/nmap/scripts
 
 ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT/%{_datadir}/ncat/ca-bundle.crt
 
