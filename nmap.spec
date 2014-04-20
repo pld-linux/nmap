@@ -13,17 +13,16 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	6.40
-Release:	3
+Version:	6.46
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	c0e2f3370e1fb97fb53185b15aa22aff
+# Source0-md5:	5a36ad3a63d5b7ea5514f745a397436a
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
 Patch3:		%{name}-desktop.patch
-Patch4:		%{name}-heartbleed.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -124,7 +123,6 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
