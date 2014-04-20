@@ -182,6 +182,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
 %{_datadir}/ncat
+%{py_sitescriptdir}/ndiff.py[co]
 %{_mandir}/man1/ncat.1*
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
