@@ -13,12 +13,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	6.46
+Version:	6.47
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	5a36ad3a63d5b7ea5514f745a397436a
+# Source0-md5:	edfe81f6763223c0a29bfa15a8526e2a
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -236,6 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/zenmap/locale/fr
 %lang(hr) %{_datadir}/zenmap/locale/hr
 %lang(it) %{_datadir}/zenmap/locale/it
+%lang(ja) %{_datadir}/zenmap/locale/ja
 %lang(pl) %{_datadir}/zenmap/locale/pl
 %lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
 %lang(ru) %{_datadir}/zenmap/locale/ru
