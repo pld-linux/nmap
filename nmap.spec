@@ -26,7 +26,7 @@ Patch3:		%{name}-desktop.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 %{?with_system_dnet:BuildRequires:	libdnet-devel}
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
