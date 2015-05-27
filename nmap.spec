@@ -23,6 +23,7 @@ Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
 Patch3:		%{name}-desktop.patch
+Patch4:		ncat-system-ssl.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -39,7 +40,6 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
 %{?with_svn:BuildRequires:	subversion-devel}
-Requires:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreq_java ClassDataVersion
@@ -120,6 +120,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %package ncat
 Summary:	Nmap's Netcat replacement
 Group:		Applications/System
+Requires:	ca-certificates
 Provides:	nc
 
 %description ncat
@@ -136,6 +137,7 @@ user with a virtually limitless number of potential uses.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
@@ -175,8 +177,6 @@ cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_postclean
-
-ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT/%{_datadir}/ncat/ca-bundle.crt
 
 # remove unneeded files
 rm -f $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
@@ -223,7 +223,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ncat
 %{_mandir}/man1/nc.1*
 %{_mandir}/man1/ncat.1*
-%{_datadir}/ncat
 
 %files zenmap
 %defattr(644,root,root,755)
