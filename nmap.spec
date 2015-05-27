@@ -117,6 +117,19 @@ This package includes zenmap, a graphical frontend for nmap.
 %description zenmap -l pl.UTF-8
 Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
+%package ncat
+Summary:	Nmap's Netcat replacement
+Group:		Applications/System
+Provides:	nc
+
+%description ncat
+Ncat is a feature packed networking utility which will read and write
+data across a network from the command line. It uses both TCP and UDP
+for communication and is designed to be a reliable back-end tool to
+instantly provide network connectivity to other applications and
+users. Ncat will not only work with IPv4 and IPv6 but provides the
+user with a virtually limitless number of potential uses.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -153,7 +166,11 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
+# provide 'nc' replacement
+ln -s ncat.1 $RPM_BUILD_ROOT%{_mandir}/man1/nc.1
+ln -s ncat $RPM_BUILD_ROOT%{_bindir}/nc
+
+cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
 %py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
@@ -175,15 +192,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 # note: COPYING contains important notes and clarifications
 %doc docs/README docs/*.txt CHANGELOG COPYING
-%attr(755,root,root) %{_bindir}/ncat
 %attr(755,root,root) %{_bindir}/ndiff
 %attr(755,root,root) %{_bindir}/nmap
 %{?with_svn:%attr(755,root,root) %{_bindir}/nmap-update}
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
-%{_datadir}/ncat
 %{py_sitescriptdir}/ndiff.py[co]
-%{_mandir}/man1/ncat.1*
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
 %{?with_svn:%{_mandir}/man1/nmap-update.1*}
@@ -202,6 +216,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/nmap.1*
 %lang(sk) %{_mandir}/sk/man1/nmap.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/nmap.1*
+
+%files ncat
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/nc
+%attr(755,root,root) %{_bindir}/ncat
+%{_mandir}/man1/nc.1*
+%{_mandir}/man1/ncat.1*
+%{_datadir}/ncat
 
 %files zenmap
 %defattr(644,root,root,755)
