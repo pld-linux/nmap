@@ -14,7 +14,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	6.47
-Release:	2
+Release:	3
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
@@ -122,6 +122,7 @@ Summary:	Nmap's Netcat replacement
 Group:		Applications/System
 Requires:	ca-certificates
 Provides:	nc
+Conflicts:	%{name} < 6.47-3
 
 %description ncat
 Ncat is a feature packed networking utility which will read and write
