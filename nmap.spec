@@ -1,6 +1,3 @@
-# TODO
-# - fill proper BRs, configure opts, currently th-builders build more featured build than carme for example
-
 # Conditional build:
 %bcond_with	system_dnet	# use system libdnet instead of local modified version
 %bcond_without	svn
@@ -36,6 +33,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
+BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
