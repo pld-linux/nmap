@@ -1,6 +1,7 @@
 # Conditional build:
 %bcond_with	system_dnet	# use system libdnet instead of local modified version
 %bcond_without	svn
+%bcond_without	python
 %bcond_without	lua
 
 Summary:	Network exploration tool and security scanner
@@ -10,12 +11,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	6.47
-Release:	3
+Version:	7.01
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	edfe81f6763223c0a29bfa15a8526e2a
+# Source0-md5:	7fa4edc592184c7addc14f5acb3fe6f7
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -173,12 +174,13 @@ ln -s ncat $RPM_BUILD_ROOT%{_bindir}/nc
 
 cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
-%py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
-%py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_postclean
 
 # remove unneeded files
-rm -f $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_ndiff
 
 # fix locale names
 mv $RPM_BUILD_ROOT%{_mandir}/pt{_PT,}
@@ -196,7 +198,9 @@ rm -rf $RPM_BUILD_ROOT
 %{?with_svn:%attr(755,root,root) %{_bindir}/nmap-update}
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
-%{py_sitescriptdir}/ndiff.py[co]
+%if %{with python}
+%{py_sitedir}/ndiff.py[co]
+%endif
 %{_mandir}/man1/ndiff.1*
 %{_mandir}/man1/nmap.1*
 %{?with_svn:%{_mandir}/man1/nmap-update.1*}
@@ -228,24 +232,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
 %attr(755,root,root) %{_bindir}/zenmap
-%dir %{py_sitescriptdir}/radialnet
-%dir %{py_sitescriptdir}/radialnet/bestwidgets
-%dir %{py_sitescriptdir}/radialnet/core
-%dir %{py_sitescriptdir}/radialnet/gui
-%dir %{py_sitescriptdir}/radialnet/util
-%dir %{py_sitescriptdir}/zenmapCore
-%dir %{py_sitescriptdir}/zenmapGUI
-%dir %{py_sitescriptdir}/zenmapGUI/higwidgets
-%{py_sitescriptdir}/radialnet/*.py[co]
-%{py_sitescriptdir}/radialnet/bestwidgets/*.py[co]
-%{py_sitescriptdir}/radialnet/core/*.py[co]
-%{py_sitescriptdir}/radialnet/gui/*.py[co]
-%{py_sitescriptdir}/radialnet/util/*.py[co]
-%{py_sitescriptdir}/zenmapCore/*.py[co]
-%{py_sitescriptdir}/zenmapGUI/*.py[co]
-%{py_sitescriptdir}/zenmapGUI/higwidgets/*.py[co]
-%if "%{pld_release}" != "ac"
-%{py_sitescriptdir}/zenmap-*.egg-info
+%if %{with python}
+%dir %{py_sitedir}/radialnet
+%dir %{py_sitedir}/radialnet/bestwidgets
+%dir %{py_sitedir}/radialnet/core
+%dir %{py_sitedir}/radialnet/gui
+%dir %{py_sitedir}/radialnet/util
+%dir %{py_sitedir}/zenmapCore
+%dir %{py_sitedir}/zenmapGUI
+%dir %{py_sitedir}/zenmapGUI/higwidgets
+%{py_sitedir}/radialnet/*.py[co]
+%{py_sitedir}/radialnet/bestwidgets/*.py[co]
+%{py_sitedir}/radialnet/core/*.py[co]
+%{py_sitedir}/radialnet/gui/*.py[co]
+%{py_sitedir}/radialnet/util/*.py[co]
+%{py_sitedir}/zenmapCore/*.py[co]
+%{py_sitedir}/zenmapGUI/*.py[co]
+%{py_sitedir}/zenmapGUI/higwidgets/*.py[co]
+%{py_sitedir}/zenmap-*.egg-info
 %endif
 %dir %{_datadir}/zenmap
 %{_datadir}/zenmap/config
