@@ -23,6 +23,7 @@ Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
 Patch3:		%{name}-desktop.patch
 Patch4:		ncat-system-ssl.patch
+Patch5:		%{name}-pythondir.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -149,6 +150,7 @@ zastosowań.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 ln -s config/acinclude.m4 libdnet-stripped
