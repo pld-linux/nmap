@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	7.01
-Release:	1
+Release:	2
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
@@ -178,10 +178,6 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# provide 'nc' replacement
-ln -s ncat.1 $RPM_BUILD_ROOT%{_mandir}/man1/nc.1
-ln -s ncat $RPM_BUILD_ROOT%{_bindir}/nc
-
 cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
@@ -233,9 +229,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ncat
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/nc
 %attr(755,root,root) %{_bindir}/ncat
-%{_mandir}/man1/nc.1*
 %{_mandir}/man1/ncat.1*
 
 %files zenmap
