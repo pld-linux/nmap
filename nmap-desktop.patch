@@ -1,8 +1,32 @@
---- nmap-4.76/zenmap/install_scripts/unix/zenmap.desktop.orig	2008-07-25 22:23:23.000000000 +0200
-+++ nmap-4.76/zenmap/install_scripts/unix/zenmap.desktop	2008-10-06 19:39:46.070630631 +0200
-@@ -1,11 +1,16 @@
+diff -ruN nmap-7.40.orig/zenmap/install_scripts/unix/zenmap-root.desktop nmap-7.40/zenmap/install_scripts/unix/zenmap-root.desktop
+--- nmap-7.40.orig/zenmap/install_scripts/unix/zenmap-root.desktop	2016-12-03 07:08:10.000000000 +0100
++++ nmap-7.40/zenmap/install_scripts/unix/zenmap-root.desktop	2017-01-27 19:56:12.796011585 +0100
+@@ -1,11 +1,18 @@
  [Desktop Entry]
--Encoding=UTF-8
+-Name=Zenmap (as root)
++Name=Zenmap as root
++Name[pl]=Zenmap jako root
+ GenericName=GUI Port Scanner
++GenericName[pl]=Skaner portów z GUI
+ TryExec=su-to-zenmap.sh
+ Exec=su-to-zenmap.sh %F
+ Terminal=false
+ Icon=zenmap
+ Type=Application
+-Categories=Application;Network;Security;
++Categories=GTK;Network;Security
+ Comment=A cross-platform GUI for the Nmap Security Scanner.
++Comment[es]=Herramienta de exploración de la rede y seguridad
++Comment[pl]=Graficzny interfejs do skanera bezpieczeństwa Nmap
++Comment[pt]=Ferramenta de exploração da rede e segurança
++Comment[ru]=Утилита сканирования сети и аудита безопасности
++Comment[uk]=Утиліта сканування мережі та аудиту безпеки
+ Keywords=network;scan;scanner;IP;security;
+diff -ruN nmap-7.40.orig/zenmap/install_scripts/unix/zenmap.desktop nmap-7.40/zenmap/install_scripts/unix/zenmap.desktop
+--- nmap-7.40.orig/zenmap/install_scripts/unix/zenmap.desktop	2016-12-03 07:08:10.000000000 +0100
++++ nmap-7.40/zenmap/install_scripts/unix/zenmap.desktop	2017-01-27 19:53:47.649553629 +0100
+@@ -1,11 +1,17 @@
+ [Desktop Entry]
  Name=Zenmap
  GenericName=GUI Port Scanner
 +GenericName[pl]=Skaner portów z GUI
@@ -19,27 +43,4 @@
 +Comment[pt]=Ferramenta de exploração da rede e segurança
 +Comment[ru]=Утилита сканирования сети и аудита безопасности
 +Comment[uk]=Утиліта сканування мережі та аудиту безпеки
---- nmap-4.76/zenmap/install_scripts/unix/zenmap-root.desktop.orig	2008-07-25 22:23:23.000000000 +0200
-+++ nmap-4.76/zenmap/install_scripts/unix/zenmap-root.desktop	2008-10-06 19:39:09.906630631 +0200
-@@ -1,11 +1,17 @@
- [Desktop Entry]
--Encoding=UTF-8
--Name=Zenmap (as root)
-+Name=Zenmap as root
-+Name[pl]=Zenmap jako root
- GenericName=GUI Port Scanner
-+GenericName[pl]=Skaner portów z GUI
- TryExec=su-to-zenmap.sh
- Exec=su-to-zenmap.sh %F
- Terminal=false
- Icon=zenmap
- Type=Application
- Categories=Application;Network;Security;
--Comment=A cross-platform GUI for the Nmap Security Scanner.
-+Categories=GTK;Network;Security
-+Comment[es]=Herramienta de exploración de la rede y seguridad
-+Comment[pl]=Graficzny interfejs do skanera bezpieczeństwa Nmap
-+Comment[pt]=Ferramenta de exploração da rede e segurança
-+Comment[ru]=Утилита сканирования сети и аудита безопасности
-+Comment[uk]=Утиліта сканування мережі та аудиту безпеки
-
+ Keywords=network;scan;scanner;IP;security;

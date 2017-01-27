@@ -12,12 +12,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.01
-Release:	2
+Version:	7.40
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	7fa4edc592184c7addc14f5acb3fe6f7
+# Source0-md5:	9c5a28bfb46228bade82b238408c065e
 Patch0:		%{name}-am18.patch
 Patch1:		%{name}-system-lua.patch
 Patch2:		%{name}-system-dnet.patch
@@ -32,7 +32,7 @@ BuildRequires:	gettext-tools
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{?with_lua:BuildRequires:	lua52-devel >= 5.2}
+%{?with_lua:BuildRequires:	lua53-devel >= 5.3}
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
@@ -165,9 +165,9 @@ done
 cp -f /usr/share/automake/config.sub .
 
 CXXFLAGS="%{rpmcxxflags} -fno-exceptions"
-CPPFLAGS="-I/usr/include/lua5.2"
+CPPFLAGS="-I/usr/include/lua5.3"
 %configure \
-	%{?with_lua:LIBLUA_LIBS="-llua5.2"} \
+	%{?with_lua:LIBLUA_LIBS="-llua5.3"} \
 	--with%{!?with_lua:out}-liblua \
 	--with%{!?with_svn:out}-subversion \
 	--with-libdnet%{!?with_system_dnet:=included}
