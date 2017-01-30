@@ -29,6 +29,7 @@ BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-tools
 %{?with_system_dnet:BuildRequires:	libdnet-devel}
+BuildRequires:	liblinear-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
@@ -168,6 +169,7 @@ CXXFLAGS="%{rpmcxxflags} -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua5.3"
 %configure \
 	%{?with_lua:LIBLUA_LIBS="-llua5.3"} \
+	--with-liblinear \
 	--with%{!?with_lua:out}-liblua \
 	--with%{!?with_svn:out}-subversion \
 	--with-libdnet%{!?with_system_dnet:=included}
