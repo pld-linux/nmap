@@ -1,12 +1,10 @@
-https://bugzilla.redhat.com/show_bug.cgi?id=734389
-
---- nmap-6.47/ncat/Makefile.in~	2013-09-12 11:20:13.000000000 +0300
-+++ nmap-6.47/ncat/Makefile.in	2015-05-27 11:49:55.759139244 +0300
-@@ -79,7 +79,6 @@
+--- nmap-7.91/ncat/Makefile.in~	2018-10-16 14:34:39.000000000 +0000
++++ nmap-7.91/ncat/Makefile.in	2021-03-25 00:06:14.652085342 +0000
+@@ -80,7 +80,6 @@
  ifneq ($(HAVE_OPENSSL),)
  SRCS += http_digest.c
  OBJS += http_digest.o
 -DATAFILES = certs/ca-bundle.crt
  endif
  
- ifneq ($(HAVE_LUA),)
+ ifneq ($(NOLUA),yes)

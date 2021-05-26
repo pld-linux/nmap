@@ -1,8 +1,7 @@
 #
 # Conditional build:
 %bcond_with	system_dnet	# use system libdnet instead of local modified version
-%bcond_without	svn		# nmap-update support (using subversion library)
-%bcond_without	python		# Python based scripts
+%bcond_without	python		# Python2 based scripts (zenmap, ndiff)
 %bcond_without	lua		# Nmap Scripting Engine (lua based)
 
 Summary:	Network exploration tool and security scanner
@@ -12,18 +11,15 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.70
-Release:	2
+Version:	7.91
+Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	84eb6fbe788e0d4918c2b1e39421bf79
-Patch0:		%{name}-am18.patch
-Patch1:		%{name}-system-lua.patch
-Patch2:		%{name}-system-dnet.patch
-Patch3:		%{name}-desktop.patch
-Patch4:		ncat-system-ssl.patch
-Patch5:		%{name}-pythondir.patch
+# Source0-md5:	239cef725863ab454590a1bb8793b72b
+Patch0:		%{name}-desktop.patch
+Patch1:		ncat-system-ssl.patch
+Patch2:		%{name}-pythondir.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -37,14 +33,10 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	python-devel >= 1:2.4
-BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
-%{?with_svn:BuildRequires:	subversion-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_noautoreq_java ClassDataVersion
 
 %description
 Nmap is a utility for network exploration or security auditing. It
@@ -112,6 +104,7 @@ Requires:	python-sqlite >= 2.0
 Provides:	nmap-X11
 Obsoletes:	nmap-X11
 Obsoletes:	nmap-frontend
+Suggests:	gksu
 
 %description zenmap
 This package includes zenmap, a graphical frontend for nmap.
@@ -149,32 +142,21 @@ zastosowań.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+# use system provided libraries
+%{__rm} -r liblinear liblua libpcap libpcre libssh2 libz
 
 %build
-ln -s config/acinclude.m4 libdnet-stripped
-ln -s ../acinclude.m4 ncat
-%{__libtoolize}
-find -type f -name configure.ac -o -name configure.in | while read CFG; do
-	cd $(dirname "$CFG")
-	%{__aclocal}
-	%{__autoconf}
-	cd "$OLDPWD"
-done
-cp -f /usr/share/automake/config.sub .
-
-CXXFLAGS="%{rpmcxxflags} -fno-exceptions"
 CPPFLAGS="-I/usr/include/lua5.3"
 %configure \
 	%{?with_lua:LIBLUA_LIBS="-llua5.3"} \
 	--with-liblinear \
 	--with%{!?with_lua:out}-liblua \
-	--with%{!?with_svn:out}-subversion \
-	--with-libdnet%{!?with_system_dnet:=included}
+	--with-libdnet%{!?with_system_dnet:=included} \
+	--with%{!?with_python:out}-zenmap \
+	--with%{!?with_python:out}-ndiff \
+	STRIP=/bin/true
 
-%{__make} -j1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -183,6 +165,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%if %{with python}
 cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
@@ -194,28 +177,26 @@ cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_ndiff
 
 # unify locale names
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/zenmap/locale/zh{,_CN}
+%endif
+
+# unify locale names
 %{__mv} $RPM_BUILD_ROOT%{_mandir}/pt{_PT,}
 %{__mv} $RPM_BUILD_ROOT%{_mandir}/zh{,_CN}
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/zenmap/locale/zh{,_CN}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-# note: COPYING contains important notes and clarifications
-%doc docs/README docs/*.txt CHANGELOG COPYING
-%attr(755,root,root) %{_bindir}/ndiff
+%doc docs/README docs/*.txt CHANGELOG HACKING
+%{?with_python:%attr(755,root,root) %{_bindir}/ndiff}
 %attr(755,root,root) %{_bindir}/nmap
-%{?with_svn:%attr(755,root,root) %{_bindir}/nmap-update}
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
-%if %{with python}
-%{py_sitescriptdir}/ndiff.py[co]
-%endif
-%{_mandir}/man1/ndiff.1*
+%{?with_python:%{_mandir}/man1/ndiff.1*}
+%{?with_python:%{py_sitescriptdir}/ndiff.py[co]}
 %{_mandir}/man1/nmap.1*
-%{?with_svn:%{_mandir}/man1/nmap-update.1*}
 %{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
 %lang(es) %{_mandir}/es/man1/nmap.1*
@@ -237,12 +218,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ncat
 %{_mandir}/man1/ncat.1*
 
+%if %{with python}
 %files zenmap
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
 %attr(755,root,root) %{_bindir}/zenmap
-%if %{with python}
 %dir %{py_sitescriptdir}/radialnet
 %dir %{py_sitescriptdir}/radialnet/bestwidgets
 %dir %{py_sitescriptdir}/radialnet/core
@@ -260,7 +241,6 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitescriptdir}/zenmapGUI/*.py[co]
 %{py_sitescriptdir}/zenmapGUI/higwidgets/*.py[co]
 %{py_sitescriptdir}/zenmap-%{version}-py*.egg-info
-%endif
 %dir %{_datadir}/zenmap
 %{_datadir}/zenmap/config
 %{_datadir}/zenmap/docs
@@ -277,7 +257,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_datadir}/zenmap/locale/ru
 %lang(zh_CN) %{_datadir}/zenmap/locale/zh_CN
 %{_datadir}/zenmap/pixmaps
-%{_datadir}/zenmap/su-to-zenmap.sh
+%attr(755,root,root) %{_datadir}/zenmap/su-to-zenmap.sh
 %{_desktopdir}/zenmap-root.desktop
 %{_desktopdir}/zenmap.desktop
 %{_mandir}/man1/zenmap.1*
+%endif
