@@ -15,7 +15,7 @@ Version:	7.91
 Release:	1
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
-Source0:	http://nmap.org/dist/%{name}-%{version}.tar.bz2
+Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	239cef725863ab454590a1bb8793b72b
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
