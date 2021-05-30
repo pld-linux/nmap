@@ -247,6 +247,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/zenmap/misc
 %dir %{_datadir}/zenmap/locale
 %lang(de) %{_datadir}/zenmap/locale/de
+%lang(es) %{_datadir}/zenmap/locale/es
 %lang(fr) %{_datadir}/zenmap/locale/fr
 %lang(hi) %{_datadir}/zenmap/locale/hi
 %lang(hr) %{_datadir}/zenmap/locale/hr
