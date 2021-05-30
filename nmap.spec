@@ -93,25 +93,6 @@ Nmap також підтримує гнучке задання цілі та п�
 сканування (decoy scanning), визначення характеристик передбачуваності
 TCP sequence, сканування sunRPC, reverse-identd сканування та інше.
 
-%package zenmap
-Summary:	Graphical frontend for nmap
-Summary(pl.UTF-8):	Graficzny frontend dla nmapa
-Group:		X11/Applications/Networking
-Requires:	%{name} = %{version}-%{release}
-Requires:	bash
-Requires:	python-pygtk-gtk >= 2:2.6
-Requires:	python-sqlite >= 2.0
-Suggests:	gksu
-Provides:	nmap-X11
-Obsoletes:	nmap-X11 < 4.53
-Obsoletes:	nmap-frontend < 3
-
-%description zenmap
-This package includes zenmap, a graphical frontend for nmap.
-
-%description zenmap -l pl.UTF-8
-Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
-
 %package ncat
 Summary:	Nmap's Netcat replacement
 Summary(pl.UTF-8):	Zamiennik Netcata z pakietu Nmap
@@ -136,6 +117,25 @@ backendowe, zapewniające łączność sieciową dla innych aplikacji i
 użytkowników. Działa nie tylko z IPv4 i IPv6, ale udostępnia
 użytkownikowi praktycznie nieograniczoną liczbę potencjalnych
 zastosowań.
+
+%package zenmap
+Summary:	Graphical frontend for nmap
+Summary(pl.UTF-8):	Graficzny frontend dla nmapa
+Group:		X11/Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+Requires:	bash
+Requires:	python-pygtk-gtk >= 2:2.6
+Requires:	python-sqlite >= 2.0
+Suggests:	gksu
+Provides:	nmap-X11
+Obsoletes:	nmap-X11 < 4.53
+Obsoletes:	nmap-frontend < 3
+
+%description zenmap
+This package includes zenmap, a graphical frontend for nmap.
+
+%description zenmap -l pl.UTF-8
+Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
 %prep
 %setup -q
