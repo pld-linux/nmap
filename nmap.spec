@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	7.91
-Release:	1
+Release:	2
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
@@ -36,6 +36,9 @@ BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
+%if %{with python}
+Suggests:	%{name}-ndiff = %{version}-%{release}
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -118,6 +121,21 @@ użytkowników. Działa nie tylko z IPv4 i IPv6, ale udostępnia
 użytkownikowi praktycznie nieograniczoną liczbę potencjalnych
 zastosowań.
 
+%package ndiff
+Summary:	ndiff - utility to compare the results of Nmap scans
+Summary(pl.UTF-8):	ndiff - narzędzie do porównywania wyników skanowań Nmapa
+Group:		Applications/Networking
+Conflicts:	nmap < 7.91-2
+
+%description ndiff
+Ndiff is a tool to aid in the comparison of Nmap scans. It takes two
+Nmap XML output files and prints the differences between them.
+
+%description ndiff -l pl.UTF-8
+Ndiff to narzędzie pomagające przy porównywaniu wyników skanowań
+Nmapa. Przyjmuje dwa pliki wyjściowe Nmapa w formacie XML i wypisuje
+różnice między nimi.
+
 %package zenmap
 Summary:	Graphical frontend for nmap
 Summary(pl.UTF-8):	Graficzny frontend dla nmapa
@@ -190,12 +208,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc docs/README docs/*.txt CHANGELOG HACKING
-%{?with_python:%attr(755,root,root) %{_bindir}/ndiff}
 %attr(755,root,root) %{_bindir}/nmap
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
-%{?with_python:%{_mandir}/man1/ndiff.1*}
-%{?with_python:%{py_sitescriptdir}/ndiff.py[co]}
 %{_mandir}/man1/nmap.1*
 %{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
@@ -219,6 +234,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/ncat.1*
 
 %if %{with python}
+%files ndiff
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/ndiff
+%{_mandir}/man1/ndiff.1*
+%{py_sitescriptdir}/ndiff.py[co]
+
 %files zenmap
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
