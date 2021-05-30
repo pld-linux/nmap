@@ -101,10 +101,10 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	bash
 Requires:	python-pygtk-gtk >= 2:2.6
 Requires:	python-sqlite >= 2.0
-Provides:	nmap-X11
-Obsoletes:	nmap-X11
-Obsoletes:	nmap-frontend
 Suggests:	gksu
+Provides:	nmap-X11
+Obsoletes:	nmap-X11 < 4.53
+Obsoletes:	nmap-frontend < 3
 
 %description zenmap
 This package includes zenmap, a graphical frontend for nmap.
@@ -118,7 +118,7 @@ Summary(pl.UTF-8):	Zamiennik Netcata z pakietu Nmap
 Group:		Applications/System
 Requires:	ca-certificates
 Provides:	nc
-Conflicts:	%{name} < 6.47-3
+Conflicts:	nmap < 6.47-3
 
 %description ncat
 Ncat is a feature packed networking utility which will read and write
