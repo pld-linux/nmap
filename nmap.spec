@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	7.91
-Release:	2
+Release:	3
 License:	GPL v2 clarified, with OpenSSL exception
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
@@ -40,6 +40,9 @@ BuildRequires:	sed >= 4.0
 Suggests:	%{name}-ndiff = %{version}-%{release}
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+#java code is run on target
+%define		_noautoreqfiles	%{_datadir}/nmap/nselib/data/jdwp-class/.*
 
 %description
 Nmap is a utility for network exploration or security auditing. It
