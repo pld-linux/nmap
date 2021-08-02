@@ -12,8 +12,8 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	7.91
-Release:	3
-License:	GPL v2 clarified, with OpenSSL exception
+Release:	4
+License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
 # Source0-md5:	239cef725863ab454590a1bb8793b72b
@@ -98,6 +98,14 @@ Nmap - це утиліта для дослідження мережі та ау�
 Nmap також підтримує гнучке задання цілі та порта, приховане
 сканування (decoy scanning), визначення характеристик передбачуваності
 TCP sequence, сканування sunRPC, reverse-identd сканування та інше.
+
+%package java
+Summary:	NSE scripts that require java
+Group:		Applications/Networking
+Requires:	%{name} = %{version}-%{release}
+
+%description java
+NSE scripts that require java.
 
 %package ncat
 Summary:	Nmap's Netcat replacement
@@ -214,6 +222,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nmap
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
+%exclude %{_datadir}/nmap/nselib/data/jdwp-class
+%exclude %{_datadir}/nmap/scripts/jdwp-*
 %{_mandir}/man1/nmap.1*
 %{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
@@ -230,6 +240,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/nmap.1*
 %lang(sk) %{_mandir}/sk/man1/nmap.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/nmap.1*
+
+%files java
+%defattr(644,root,root,755)
+%{_datadir}/nmap/nselib/data/jdwp-class
+%{_datadir}/nmap/scripts/jdwp-*
 
 %files ncat
 %defattr(644,root,root,755)
