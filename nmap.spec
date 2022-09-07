@@ -11,12 +11,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.92
-Release:	2
+Version:	7.93
+Release:	1
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	849f7298a786ce4cd5728db989cff763
+# Source0-md5:	9027eac4b8ca57574012cb061ba9ce4d
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
 Patch2:		%{name}-pythondir.patch
