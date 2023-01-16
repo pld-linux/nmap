@@ -100,12 +100,16 @@ Nmap також підтримує гнучке задання цілі та п�
 TCP sequence, сканування sunRPC, reverse-identd сканування та інше.
 
 %package java
-Summary:	NSE scripts that require java
+Summary:	NSE scripts that require Java
+Summary(pl.UTF-8):	Skrypty NSE wykorzystujące Javę
 Group:		Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 
 %description java
-NSE scripts that require java.
+NSE scripts that require Java.
+
+%description java -l pl.UTF-8
+Skrypty NSE wykorzystujące Javę.
 
 %package ncat
 Summary:	Nmap's Netcat replacement
