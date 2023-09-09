@@ -157,8 +157,8 @@ Summary(pl.UTF-8):	Graficzny frontend dla nmapa
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Requires:	bash
+Requires:	python3-modules >= 1:3.6
 Requires:	python3-pygobject3
-#Requires:	python3-sqlite >= 2.0
 Suggests:	gksu
 Provides:	nmap-X11
 Obsoletes:	nmap-X11 < 4.53
@@ -204,9 +204,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 %if %{with python}
 cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
-#py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
-#py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
-#py_postclean
+%py3_ocomp $RPM_BUILD_ROOT%{py3_sitescriptdir}
 
 # remove unneeded files
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
