@@ -11,15 +11,15 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.93
-Release:	2
+Version:	7.94
+Release:	1
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	9027eac4b8ca57574012cb061ba9ce4d
+# Source0-md5:	4f65e08148d1eaac6b1a1482e7185e1d
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
-Patch2:		%{name}-pythondir.patch
+Patch2:		zenmap-install.patch
 URL:		http://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -29,10 +29,10 @@ BuildRequires:	liblinear-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-%{?with_lua:BuildRequires:	lua53-devel >= 5.3}
+%{?with_lua:BuildRequires:	lua54-devel >= 5.4}
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
-BuildRequires:	python-devel >= 1:2.4
+BuildRequires:	python3-devel >= 1:3.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
@@ -157,8 +157,8 @@ Summary(pl.UTF-8):	Graficzny frontend dla nmapa
 Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Requires:	bash
-Requires:	python-pygtk-gtk >= 2:2.6
-Requires:	python-sqlite >= 2.0
+Requires:	python3-pygobject3
+#Requires:	python3-sqlite >= 2.0
 Suggests:	gksu
 Provides:	nmap-X11
 Obsoletes:	nmap-X11 < 4.53
@@ -179,9 +179,12 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %{__rm} -r liblinear liblua libpcap libpcre libssh2 libz
 
 %build
-CPPFLAGS="-I/usr/include/lua5.3"
+%{__autoheader}
+cd ncat
+%{__autoheader}
+cd ..
 %configure \
-	%{?with_lua:LIBLUA_LIBS="-llua5.3"} \
+	PYTHON=%{__python3} \
 	--with-liblinear \
 	--with%{!?with_lua:out}-liblua \
 	--with-libdnet%{!?with_system_dnet:=included} \
@@ -201,9 +204,9 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 %if %{with python}
 cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
-%py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
-%py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
-%py_postclean
+#py_ocomp $RPM_BUILD_ROOT%{py_sitescriptdir}
+#py_comp $RPM_BUILD_ROOT%{py_sitescriptdir}
+#py_postclean
 
 # remove unneeded files
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
@@ -260,30 +263,39 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ndiff
 %{_mandir}/man1/ndiff.1*
-%{py_sitescriptdir}/ndiff.py[co]
+%{py3_sitescriptdir}/__pycache__/ndiff*.pyc
+%{py3_sitescriptdir}/ndiff.py
 
 %files zenmap
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/xnmap
 %attr(755,root,root) %{_bindir}/zenmap
-%dir %{py_sitescriptdir}/radialnet
-%dir %{py_sitescriptdir}/radialnet/bestwidgets
-%dir %{py_sitescriptdir}/radialnet/core
-%dir %{py_sitescriptdir}/radialnet/gui
-%dir %{py_sitescriptdir}/radialnet/util
-%dir %{py_sitescriptdir}/zenmapCore
-%dir %{py_sitescriptdir}/zenmapGUI
-%dir %{py_sitescriptdir}/zenmapGUI/higwidgets
-%{py_sitescriptdir}/radialnet/*.py[co]
-%{py_sitescriptdir}/radialnet/bestwidgets/*.py[co]
-%{py_sitescriptdir}/radialnet/core/*.py[co]
-%{py_sitescriptdir}/radialnet/gui/*.py[co]
-%{py_sitescriptdir}/radialnet/util/*.py[co]
-%{py_sitescriptdir}/zenmapCore/*.py[co]
-%{py_sitescriptdir}/zenmapGUI/*.py[co]
-%{py_sitescriptdir}/zenmapGUI/higwidgets/*.py[co]
-%{py_sitescriptdir}/zenmap-%{version}-py*.egg-info
+%dir %{py3_sitescriptdir}/radialnet
+%dir %{py3_sitescriptdir}/radialnet/bestwidgets
+%dir %{py3_sitescriptdir}/radialnet/core
+%dir %{py3_sitescriptdir}/radialnet/gui
+%dir %{py3_sitescriptdir}/radialnet/util
+%dir %{py3_sitescriptdir}/zenmapCore
+%dir %{py3_sitescriptdir}/zenmapGUI
+%dir %{py3_sitescriptdir}/zenmapGUI/higwidgets
+%{py3_sitescriptdir}/radialnet/__pycache__
+%{py3_sitescriptdir}/radialnet/*.py
+%{py3_sitescriptdir}/radialnet/bestwidgets/__pycache__
+%{py3_sitescriptdir}/radialnet/bestwidgets/*.py
+%{py3_sitescriptdir}/radialnet/core/__pycache__
+%{py3_sitescriptdir}/radialnet/core/*.py
+%{py3_sitescriptdir}/radialnet/gui/__pycache__
+%{py3_sitescriptdir}/radialnet/gui/*.py
+%{py3_sitescriptdir}/radialnet/util/__pycache__
+%{py3_sitescriptdir}/radialnet/util/*.py
+%{py3_sitescriptdir}/zenmapCore/__pycache__
+%{py3_sitescriptdir}/zenmapCore/*.py
+%{py3_sitescriptdir}/zenmapGUI/__pycache__
+%{py3_sitescriptdir}/zenmapGUI/*.py
+%{py3_sitescriptdir}/zenmapGUI/higwidgets/__pycache__
+%{py3_sitescriptdir}/zenmapGUI/higwidgets/*.py
+%{py3_sitescriptdir}/zenmap-%{version}-py*.egg-info
 %dir %{_datadir}/zenmap
 %{_datadir}/zenmap/config
 %{_datadir}/zenmap/docs

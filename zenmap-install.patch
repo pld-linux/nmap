@@ -1,0 +1,36 @@
+--- nmap-7.94/zenmap/setup.py.orig	2023-09-09 13:33:48.794056934 +0200
++++ nmap-7.94/zenmap/setup.py	2023-09-09 13:43:54.152684741 +0200
+@@ -94,16 +94,6 @@
+ desktop_dir = os.path.join('share', 'applications')
+ 
+ 
+-def mo_find(result, dirname, fnames):
+-    files = []
+-    for f in fnames:
+-        p = os.path.join(dirname, f)
+-        if os.path.isfile(p) and f.endswith(".mo"):
+-            files.append(p)
+-
+-    if files:
+-        result.append((dirname, files))
+-
+ ###############################################################################
+ # Installation variables
+ 
+@@ -124,8 +114,14 @@
+         ]
+ 
+ # Add i18n files to data_files list
+-os.walk(locale_dir, mo_find, data_files)
+-
++_files = []
++for dirname, _, files in os.walk(locale_dir):
++    for f in files:
++        p = os.path.join(dirname, f)
++        if os.path.isfile(p) and f.endswith(".mo"):
++            _files.append(p)
++    if _files:
++        data_files.append((dirname, _files))
+ 
+ # path_startswith and path_strip_prefix are used to deal with the installation
+ # root (--root option, also known as DESTDIR).
