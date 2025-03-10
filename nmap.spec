@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	7.94
-Release:	1
+Release:	
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
