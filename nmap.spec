@@ -12,7 +12,7 @@ Summary(ru.UTF-8):	Утилита сканирования сети и ауди�
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
 Version:	7.94
-Release:	
+Release:	2
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
@@ -172,9 +172,9 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P 0 -p1
+%patch -P 1 -p1
+%patch -P 2 -p1
 # use system provided libraries
 %{__rm} -r liblinear liblua libpcap libpcre libssh2 libz
 
