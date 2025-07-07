@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_with	system_dnet	# use system libdnet instead of local modified version
-%bcond_without	python		# Python2 based scripts (zenmap, ndiff)
+%bcond_without	python		# Python3 based scripts (zenmap, ndiff)
 %bcond_without	lua		# Nmap Scripting Engine (lua based)
 
 Summary:	Network exploration tool and security scanner
@@ -11,16 +11,16 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.94
-Release:	3
+Version:	7.97
+Release:	1
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	4f65e08148d1eaac6b1a1482e7185e1d
+# Source0-md5:	e4ac67fa85b4c2a93b49c811b1f0d163
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
-Patch2:		zenmap-install.patch
-URL:		http://nmap.org/
+Patch2:		%{name}-python.patch
+URL:		https://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-tools
@@ -37,6 +37,9 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
 %if %{with python}
+BuildRequires:	python3-build
+BuildRequires:	python3-setuptools
+BuildRequires:	python3-installer
 Suggests:	%{name}-ndiff = %{version}-%{release}
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -174,7 +177,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %setup -q
 %patch -P 0 -p1
 %patch -P 1 -p1
-%patch -P 2 -p1
+%patch -P 2 -p1 -b .orig
 # use system provided libraries
 %{__rm} -r liblinear liblua libpcap libpcre libssh2 libz
 
@@ -185,12 +188,12 @@ cd ncat
 cd ..
 %configure \
 	PYTHON=%{__python3} \
+	STRIP=/bin/true \
 	--with-liblinear \
-	--with%{!?with_lua:out}-liblua \
+	--with-lua%{!?with_lua:=no} \
 	--with-libdnet%{!?with_system_dnet:=included} \
-	--with%{!?with_python:out}-zenmap \
-	--with%{!?with_python:out}-ndiff \
-	STRIP=/bin/true
+	--with-zenmap%{!?with_python:=no} \
+	--with-ndiff%{!?with_python:=no}
 
 %{__make}
 
@@ -202,16 +205,16 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with python}
-cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
+#cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
-%py3_ocomp $RPM_BUILD_ROOT%{py3_sitescriptdir}
+#py3_ocomp $RPM_BUILD_ROOT%{py3_sitescriptdir}
 
-# remove unneeded files
-%{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_zenmap
-%{__rm} $RPM_BUILD_ROOT%{_bindir}/uninstall_ndiff
+# missing in intermediate python wheel (why???)
+cp -pr zenmap/zenmapCore/data/locale/{??,??_??} $RPM_BUILD_ROOT%{py3_sitescriptdir}/zenmapCore/data/locale
+install zenmap/install_scripts/unix/su-to-zenmap.sh $RPM_BUILD_ROOT%{_bindir}
 
 # unify locale names
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/zenmap/locale/zh{,_CN}
+%{__mv} $RPM_BUILD_ROOT%{py3_sitescriptdir}/zenmapCore/data/locale/zh{,_CN}
 %endif
 
 # unify locale names
@@ -261,12 +264,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ndiff
 %{_mandir}/man1/ndiff.1*
-%{py3_sitescriptdir}/__pycache__/ndiff*.pyc
+%{py3_sitescriptdir}/__pycache__/ndiff.cpython-*.py[co]
 %{py3_sitescriptdir}/ndiff.py
+%{py3_sitescriptdir}/ndiff-7.96.dist-info
 
 %files zenmap
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
+%attr(755,root,root) %{_bindir}/su-to-zenmap.sh
 %attr(755,root,root) %{_bindir}/xnmap
 %attr(755,root,root) %{_bindir}/zenmap
 %dir %{py3_sitescriptdir}/radialnet
@@ -289,29 +294,30 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/radialnet/util/*.py
 %{py3_sitescriptdir}/zenmapCore/__pycache__
 %{py3_sitescriptdir}/zenmapCore/*.py
+%dir %{py3_sitescriptdir}/zenmapCore/data
+%{py3_sitescriptdir}/zenmapCore/data/config
+%{py3_sitescriptdir}/zenmapCore/data/docs
+%{py3_sitescriptdir}/zenmapCore/data/misc
+%dir %{py3_sitescriptdir}/zenmapCore/data/locale
+%{py3_sitescriptdir}/zenmapCore/data/locale/xgettext-profile_editor.py
+%{py3_sitescriptdir}/zenmapCore/data/locale/__pycache__
+%lang(de) %{py3_sitescriptdir}/zenmapCore/data/locale/de
+%lang(es) %{py3_sitescriptdir}/zenmapCore/data/locale/es
+%lang(fr) %{py3_sitescriptdir}/zenmapCore/data/locale/fr
+%lang(hi) %{py3_sitescriptdir}/zenmapCore/data/locale/hi
+%lang(hr) %{py3_sitescriptdir}/zenmapCore/data/locale/hr
+%lang(it) %{py3_sitescriptdir}/zenmapCore/data/locale/it
+%lang(ja) %{py3_sitescriptdir}/zenmapCore/data/locale/ja
+%lang(pl) %{py3_sitescriptdir}/zenmapCore/data/locale/pl
+%lang(pt_BR) %{py3_sitescriptdir}/zenmapCore/data/locale/pt_BR
+%lang(ru) %{py3_sitescriptdir}/zenmapCore/data/locale/ru
+%lang(zh_CN) %{py3_sitescriptdir}/zenmapCore/data/locale/zh_CN
+%{py3_sitescriptdir}/zenmapCore/data/pixmaps
 %{py3_sitescriptdir}/zenmapGUI/__pycache__
 %{py3_sitescriptdir}/zenmapGUI/*.py
 %{py3_sitescriptdir}/zenmapGUI/higwidgets/__pycache__
 %{py3_sitescriptdir}/zenmapGUI/higwidgets/*.py
-%{py3_sitescriptdir}/zenmap-%{version}-py*.egg-info
-%dir %{_datadir}/zenmap
-%{_datadir}/zenmap/config
-%{_datadir}/zenmap/docs
-%{_datadir}/zenmap/misc
-%dir %{_datadir}/zenmap/locale
-%lang(de) %{_datadir}/zenmap/locale/de
-%lang(es) %{_datadir}/zenmap/locale/es
-%lang(fr) %{_datadir}/zenmap/locale/fr
-%lang(hi) %{_datadir}/zenmap/locale/hi
-%lang(hr) %{_datadir}/zenmap/locale/hr
-%lang(it) %{_datadir}/zenmap/locale/it
-%lang(ja) %{_datadir}/zenmap/locale/ja
-%lang(pl) %{_datadir}/zenmap/locale/pl
-%lang(pt_BR) %{_datadir}/zenmap/locale/pt_BR
-%lang(ru) %{_datadir}/zenmap/locale/ru
-%lang(zh_CN) %{_datadir}/zenmap/locale/zh_CN
-%{_datadir}/zenmap/pixmaps
-%attr(755,root,root) %{_datadir}/zenmap/su-to-zenmap.sh
+%{py3_sitescriptdir}/zenmap-%{version}.dist-info
 %{_desktopdir}/zenmap-root.desktop
 %{_desktopdir}/zenmap.desktop
 %{_mandir}/man1/zenmap.1*
