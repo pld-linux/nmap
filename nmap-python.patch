@@ -1,23 +1,23 @@
---- nmap-7.97/Makefile.in.orig	2025-05-03 20:05:46.000000000 +0200
-+++ nmap-7.97/Makefile.in	2025-07-07 06:18:45.828271472 +0200
-@@ -359,11 +359,11 @@ tests/%: tests/%.cc $(OBJS)
- DEFAULT_PYTHON_PATH = /usr/bin/env python3
+--- nmap-7.99/Makefile.in.orig
++++ nmap-7.99/Makefile.in
+@@ -352,11 +352,11 @@
+ 	$(CXX) -o $@ $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) $<
  
  build-zenmap: $(ZENMAPDIR)/pyproject.toml $(ZENMAPDIR)/zenmapCore/Version.py
 -	$(PYTHON) -m build $(ZENMAPDIR)/
 +	$(PYTHON) -m build --no-isolation --wheel $(ZENMAPDIR)/
  
  install-zenmap: $(ZENMAPDIR)/pyproject.toml
- 	$(INSTALL) -d $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1 $(DESTDIR)$(deskdir)
+ 	mkdir -p $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1 $(DESTDIR)$(deskdir)
 -	$(PYTHON) -m pip install $(ZENMAPDIR)/ $(if $(DESTDIR),--root "$(DESTDIR)")
 +	$(PYTHON) -m installer $(if $(DESTDIR),--destdir="$(DESTDIR)") --prefix=$(prefix) --compile-bytecode=2 $(ZENMAPDIR)/dist/zenmap*.whl
  	$(INSTALL) -c -m 644 docs/zenmap.1 $(DESTDIR)$(mandir)/man1/
  	$(INSTALL) -c -m 644 $(ZENMAPDIR)/install_scripts/unix/*.desktop $(DESTDIR)$(deskdir)
  # Create a symlink from nmapfe to zenmap if nmapfe doesn't exist or is
-@@ -375,14 +375,14 @@ install-zenmap: $(ZENMAPDIR)/pyproject.t
- 	ln -sf zenmap $(DESTDIR)$(bindir)/xnmap
+@@ -371,14 +371,14 @@
+ 	cp $^ $@
  
- build-ndiff:
+ build-ndiff: $(NDIFFDIR)/pyproject.toml $(NDIFFDIR)/Version.py
 -	$(PYTHON) -m build $(NDIFFDIR)/
 +	$(PYTHON) -m build --no-isolation --wheel $(NDIFFDIR)/
  
@@ -25,7 +25,7 @@
  	@cd $(NPINGDIR) && $(MAKE)
  
  install-ndiff:
- 	$(INSTALL) -d $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
+ 	mkdir -p $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
 -	$(PYTHON) -m pip install $(NDIFFDIR)/ $(if $(DESTDIR),--root "$(DESTDIR)")
 +	$(PYTHON) -m installer $(if $(DESTDIR),--destdir="$(DESTDIR)") --prefix=$(prefix) --compile-bytecode=2 $(NDIFFDIR)/dist/ndiff*.whl
  	$(INSTALL) -c -m 644 $(NDIFFDIR)/docs/ndiff.1 $(DESTDIR)$(mandir)/man1/

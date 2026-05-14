@@ -11,15 +11,16 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.97
+Version:	7.99
 Release:	1
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	e4ac67fa85b4c2a93b49c811b1f0d163
+# Source0-md5:	187db52073c5a1bcbc579e0efbc2c0bd
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
 Patch2:		%{name}-python.patch
+Patch3:		%{name}-zenmap-drop-ndiff.patch
 URL:		https://nmap.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -39,9 +40,11 @@ BuildRequires:	sed >= 4.0
 %if %{with python}
 BuildRequires:	python3-build
 BuildRequires:	python3-setuptools
+BuildRequires:	python3-setuptools-gettext
 BuildRequires:	python3-installer
 Suggests:	%{name}-ndiff = %{version}-%{release}
 %endif
+Obsoletes:	nmap-java < 7.99
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 #java code is run on target
@@ -101,18 +104,6 @@ Nmap - це утиліта для дослідження мережі та ау�
 Nmap також підтримує гнучке задання цілі та порта, приховане
 сканування (decoy scanning), визначення характеристик передбачуваності
 TCP sequence, сканування sunRPC, reverse-identd сканування та інше.
-
-%package java
-Summary:	NSE scripts that require Java
-Summary(pl.UTF-8):	Skrypty NSE wykorzystujące Javę
-Group:		Applications/Networking
-Requires:	%{name} = %{version}-%{release}
-
-%description java
-NSE scripts that require Java.
-
-%description java -l pl.UTF-8
-Skrypty NSE wykorzystujące Javę.
 
 %package ncat
 Summary:	Nmap's Netcat replacement
@@ -178,6 +169,7 @@ Ten pakiet zawiera zenmap, czyli graficzny frontend dla nmapa.
 %patch -P 0 -p1
 %patch -P 1 -p1
 %patch -P 2 -p1 -b .orig
+%patch -P 3 -p1
 # use system provided libraries
 %{__rm} -r liblinear liblua libpcap libpcre libssh2 libz
 
@@ -205,16 +197,12 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with python}
-#cp -p docs/zenmap.1 $RPM_BUILD_ROOT%{_mandir}/man1
-
-#py3_ocomp $RPM_BUILD_ROOT%{py3_sitescriptdir}
-
-# missing in intermediate python wheel (why???)
-cp -pr zenmap/zenmapCore/data/locale/{??,??_??} $RPM_BUILD_ROOT%{py3_sitescriptdir}/zenmapCore/data/locale
 install zenmap/install_scripts/unix/su-to-zenmap.sh $RPM_BUILD_ROOT%{_bindir}
 
 # unify locale names
-%{__mv} $RPM_BUILD_ROOT%{py3_sitescriptdir}/zenmapCore/data/locale/zh{,_CN}
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/locale/zh{,_CN}
+
+%find_lang zenmap
 %endif
 
 # unify locale names
@@ -230,8 +218,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nmap
 %attr(755,root,root) %{_bindir}/nping
 %{_datadir}/nmap
-%exclude %{_datadir}/nmap/nselib/data/jdwp-class
-%exclude %{_datadir}/nmap/scripts/jdwp-*
 %{_mandir}/man1/nmap.1*
 %{_mandir}/man1/nping.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
@@ -249,11 +235,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sk) %{_mandir}/sk/man1/nmap.1*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/nmap.1*
 
-%files java
-%defattr(644,root,root,755)
-%{_datadir}/nmap/nselib/data/jdwp-class
-%{_datadir}/nmap/scripts/jdwp-*
-
 %files ncat
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ncat
@@ -266,9 +247,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/ndiff.1*
 %{py3_sitescriptdir}/__pycache__/ndiff.cpython-*.py[co]
 %{py3_sitescriptdir}/ndiff.py
-%{py3_sitescriptdir}/ndiff-7.96.dist-info
+%{py3_sitescriptdir}/ndiff-%{version}.dist-info
 
-%files zenmap
+%files zenmap -f zenmap.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/nmapfe
 %attr(755,root,root) %{_bindir}/su-to-zenmap.sh
@@ -298,20 +279,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/zenmapCore/data/config
 %{py3_sitescriptdir}/zenmapCore/data/docs
 %{py3_sitescriptdir}/zenmapCore/data/misc
-%dir %{py3_sitescriptdir}/zenmapCore/data/locale
-%{py3_sitescriptdir}/zenmapCore/data/locale/xgettext-profile_editor.py
-%{py3_sitescriptdir}/zenmapCore/data/locale/__pycache__
-%lang(de) %{py3_sitescriptdir}/zenmapCore/data/locale/de
-%lang(es) %{py3_sitescriptdir}/zenmapCore/data/locale/es
-%lang(fr) %{py3_sitescriptdir}/zenmapCore/data/locale/fr
-%lang(hi) %{py3_sitescriptdir}/zenmapCore/data/locale/hi
-%lang(hr) %{py3_sitescriptdir}/zenmapCore/data/locale/hr
-%lang(it) %{py3_sitescriptdir}/zenmapCore/data/locale/it
-%lang(ja) %{py3_sitescriptdir}/zenmapCore/data/locale/ja
-%lang(pl) %{py3_sitescriptdir}/zenmapCore/data/locale/pl
-%lang(pt_BR) %{py3_sitescriptdir}/zenmapCore/data/locale/pt_BR
-%lang(ru) %{py3_sitescriptdir}/zenmapCore/data/locale/ru
-%lang(zh_CN) %{py3_sitescriptdir}/zenmapCore/data/locale/zh_CN
+%{py3_sitescriptdir}/zenmapCore/data/locale
 %{py3_sitescriptdir}/zenmapCore/data/pixmaps
 %{py3_sitescriptdir}/zenmapGUI/__pycache__
 %{py3_sitescriptdir}/zenmapGUI/*.py
