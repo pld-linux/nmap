@@ -11,12 +11,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.99
+Version:	7.991
 Release:	1
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	187db52073c5a1bcbc579e0efbc2c0bd
+# Source0-md5:	a689503c1b7851be8aba804eae414b27
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
 Patch2:		%{name}-python.patch
@@ -28,15 +28,17 @@ BuildRequires:	gettext-tools
 %{?with_system_dnet:BuildRequires:	libdnet-devel}
 BuildRequires:	liblinear-devel
 BuildRequires:	libpcap-devel
+BuildRequires:	libssh2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 %{?with_lua:BuildRequires:	lua54-devel >= 5.4}
 BuildRequires:	openssl-devel
-BuildRequires:	pcre-devel
+BuildRequires:	pcre2-8-devel
 BuildRequires:	python3-devel >= 1:3.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
+BuildRequires:	zlib-devel
 %if %{with python}
 BuildRequires:	python3-build
 BuildRequires:	python3-setuptools
@@ -271,6 +273,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/radialnet/core/*.py
 %{py3_sitescriptdir}/radialnet/gui/__pycache__
 %{py3_sitescriptdir}/radialnet/gui/*.py
+%{py3_sitescriptdir}/radialnet/share
 %{py3_sitescriptdir}/radialnet/util/__pycache__
 %{py3_sitescriptdir}/radialnet/util/*.py
 %{py3_sitescriptdir}/zenmapCore/__pycache__

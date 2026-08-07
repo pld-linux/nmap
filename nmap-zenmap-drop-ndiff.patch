@@ -1,6 +1,6 @@
---- nmap-7.99/zenmap/pyproject.toml.orig
-+++ nmap-7.99/zenmap/pyproject.toml
-@@ -24,9 +24,6 @@
+--- nmap-7.991/zenmap/pyproject.toml.orig
++++ nmap-7.991/zenmap/pyproject.toml
+@@ -24,11 +24,7 @@
  [project.gui-scripts]
  zenmap = "zenmapGUI.App:run"
  
@@ -8,13 +8,7 @@
 -ndiff = "ndiff:run_main"
 -
  [tool.setuptools]
- packages = [
- "zenmapCore",
-@@ -44,7 +41,6 @@
- "radialnet.gui",
- "radialnet.util",
- ]
 -py-modules = ["ndiff"]
+ include-package-data = true
  
- [tool.setuptools.dynamic]
- version = {attr = "zenmapCore.Version.VERSION"}
+ [tool.setuptools.packages.find]
