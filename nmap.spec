@@ -11,12 +11,12 @@ Summary(pt_BR.UTF-8):	Ferramenta de exploração da rede e segurança
 Summary(ru.UTF-8):	Утилита сканирования сети и аудита безопасности
 Summary(uk.UTF-8):	Утиліта сканування мережі та аудиту безпеки
 Name:		nmap
-Version:	7.991
+Version:	7.993
 Release:	1
 License:	Nmap Public Source License
 Group:		Networking/Utilities
 Source0:	https://nmap.org/dist/%{name}-%{version}.tar.bz2
-# Source0-md5:	a689503c1b7851be8aba804eae414b27
+# Source0-md5:	5d9d6ee92dbc3857f2fb3f222375769f
 Patch0:		%{name}-desktop.patch
 Patch1:		ncat-system-ssl.patch
 Patch2:		%{name}-python.patch
@@ -34,16 +34,16 @@ BuildRequires:	libtool
 %{?with_lua:BuildRequires:	lua54-devel >= 5.4}
 BuildRequires:	openssl-devel
 BuildRequires:	pcre2-8-devel
-BuildRequires:	python3-devel >= 1:3.6
-BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.672
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 %if %{with python}
 BuildRequires:	python3-build
+BuildRequires:	python3-devel >= 1:3.6
 BuildRequires:	python3-setuptools
 BuildRequires:	python3-setuptools-gettext
 BuildRequires:	python3-installer
+BuildRequires:	rpm-pythonprov
 Suggests:	%{name}-ndiff = %{version}-%{release}
 %endif
 Obsoletes:	nmap-java < 7.99
@@ -154,7 +154,6 @@ Group:		X11/Applications/Networking
 Requires:	%{name} = %{version}-%{release}
 Requires:	bash
 Requires:	python3-modules >= 1:3.6
-Requires:	python3-pygobject3
 Suggests:	gksu
 Provides:	nmap-X11
 Obsoletes:	nmap-X11 < 4.53

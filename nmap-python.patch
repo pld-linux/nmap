@@ -1,6 +1,6 @@
 --- nmap-7.99/Makefile.in.orig
 +++ nmap-7.99/Makefile.in
-@@ -352,11 +352,11 @@
+@@ -361,11 +361,11 @@
  	$(CXX) -o $@ $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) $<
  
  build-zenmap: $(ZENMAPDIR)/pyproject.toml $(ZENMAPDIR)/zenmapCore/Version.py
@@ -14,14 +14,14 @@
  	$(INSTALL) -c -m 644 docs/zenmap.1 $(DESTDIR)$(mandir)/man1/
  	$(INSTALL) -c -m 644 $(ZENMAPDIR)/install_scripts/unix/*.desktop $(DESTDIR)$(deskdir)
  # Create a symlink from nmapfe to zenmap if nmapfe doesn't exist or is
-@@ -371,14 +371,14 @@
+@@ -380,14 +380,14 @@
  	cp $^ $@
  
  build-ndiff: $(NDIFFDIR)/pyproject.toml $(NDIFFDIR)/Version.py
 -	$(PYTHON) -m build $(NDIFFDIR)/
 +	$(PYTHON) -m build --no-isolation --wheel $(NDIFFDIR)/
  
- build-nping: $(NPINGDIR)/Makefile build-nbase build-nsock build-netutil $(NPINGDIR)/nping.h @DNET_BUILD@ @PCAP_BUILD@
+ build-nping: $(NPINGDIR)/Makefile @NBASE_BUILD@ @NSOCK_BUILD@ build-netutil $(NPINGDIR)/nping.h @DNET_BUILD@ @PCAP_BUILD@
  	@cd $(NPINGDIR) && $(MAKE)
  
  install-ndiff:
